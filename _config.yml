@@ -1,0 +1,6 @@
+# GitHub Pages publica todo menos esto
+exclude:
+  - README.md
+  - herramientas
+  - prototipos
+  - .gitignore

@@ -168,63 +168,12 @@
     progreso.style.transform = 'scaleX(' + (max > 0 ? limita(window.scrollY / max) : 0) + ')';
   });
 
-  // ── lo que no negociamos: un principio a la vez; avanza solo y también se elige abajo ──
-  (function () {
-    var caja = document.getElementById('credo');
-    if (!caja) return;
-    var escena = document.getElementById('credo-escena');
-    var nombre = escena.querySelector('.credo-nombre'), texto = escena.querySelector('.credo-texto');
-    var botones = Array.prototype.slice.call(caja.querySelectorAll('.credo-boton'));
-    var datos = botones.map(function (b) { return { n: b.querySelector('.credo-b-nombre').textContent, t: b.parentNode.querySelector('.credo-desc').textContent }; });
-    var DUR = 5200, actual = 0, reloj = null, cambio = null, enVista = false, encima = false;
-    caja.style.setProperty('--dur', DUR + 'ms');
-    function mostrar(k) {
-      if (k === actual && nombre.textContent === datos[k].n + '.') return;
-      actual = k;
-      clearTimeout(cambio);
-      escena.classList.remove('entra');
-      escena.classList.add('sale');
-      cambio = setTimeout(function () {
-        nombre.textContent = datos[k].n + '.';
-        texto.textContent = datos[k].t;
-        escena.classList.remove('sale');
-        void escena.offsetWidth;
-        escena.classList.add('entra');
-      }, reducir ? 0 : 190);
-    }
-    function marcar(corriendo) {
-      botones.forEach(function (b, i) {
-        b.classList.remove('corre', 'fijo');
-        b.classList.toggle('activo', i === actual);
-        b.setAttribute('aria-pressed', i === actual ? 'true' : 'false');
-      });
-      void botones[actual].offsetWidth;
-      botones[actual].classList.add(corriendo ? 'corre' : 'fijo');
-    }
-    function seguir() {
-      clearTimeout(reloj);
-      var auto = !reducir && enVista && !encima && !document.hidden;
-      marcar(auto);
-      if (auto) reloj = setTimeout(function () { mostrar((actual + 1) % botones.length); seguir(); }, DUR);
-    }
-    botones.forEach(function (b, k) {
-      b.addEventListener('click', function () { encima = true; mostrar(k); seguir(); });
-      b.addEventListener('mouseenter', function () { encima = true; mostrar(k); seguir(); });
-      b.addEventListener('focus', function () { encima = true; mostrar(k); seguir(); });
-      b.addEventListener('blur', function () { encima = false; seguir(); });
-    });
-    caja.addEventListener('mouseleave', function () { encima = false; seguir(); });
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { enVista = e[0].isIntersecting; seguir(); }, { threshold: 0.35 }).observe(caja);
-    document.addEventListener('visibilitychange', seguir);
-    marcar(false);
-  })();
-
   // ── cuenta regresiva al lanzamiento de VYGO ──
   (function () {
     var caja = document.getElementById('cuenta');
     if (!caja) return;
-    // Segunda semana de marzo de 2027. Mientras no haya día exacto: lunes 8 de marzo, 00:00 en Managua (UTC−6).
-    var META = Date.UTC(2027, 2, 8, 6, 0, 0);
+    // Lanzamiento el miércoles 17 de marzo de 2027, a las 00:00 en Managua (UTC−6, sin horario de verano).
+    var META = Date.UTC(2027, 2, 17, 6, 0, 0);
     var un = {};
     ['d', 'h', 'm', 's'].forEach(function (k) { un[k] = caja.querySelector('[data-u="' + k + '"]'); });
     function poner(el, txt) {
@@ -253,27 +202,6 @@
     }
     tic();
     setInterval(tic, 1000);
-  })();
-
-  // ── dónde estamos: el símbolo avanza por la línea a medida que se baja, hasta «Hoy» ──
-  (function () {
-    var via = document.getElementById('via');
-    if (!via) return;
-    var hoy = via.querySelector('.hito.ahora'), rodo = false;
-    function medir() { if (hoy) via.style.setProperty('--hoy-y', hoy.offsetTop + 'px'); }
-    function pintar() {
-      var r = via.getBoundingClientRect(), vh = window.innerHeight;
-      var p = reducir ? 1 : limita((vh * 0.84 - r.top) / (vh * 0.4));
-      via.style.setProperty('--p', p.toFixed(4));
-      if (p > 0.03 && !rodo) { rodo = true; var anio = document.getElementById('hito-anio'); if (anio && !reducir) rodar(anio, 0.1); }
-      if (p >= 0.999) via.classList.add('llego');
-    }
-    medir();
-    window.addEventListener('resize', medir);
-    window.addEventListener('load', medir);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
-    alBajarTodos.push(pintar);
-    pintar();
   })();
 
   // ── preguntas: abren y cierran con movimiento ──

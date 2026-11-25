@@ -26,8 +26,8 @@ y en el teléfono entrar a `http://IP-DE-TU-MÁQUINA:4800`.
 
 | Ruta | Qué es |
 | --- | --- |
-| `index.html` | Inicio. Portada, carta, áreas con video, misión y visión, principios, hitos, lanzamiento de VYGO, formulario, empleo, preguntas y contacto |
-| `comercios.html` | Página del formulario «Presentá tu negocio o tu idea» |
+| `index.html` | Inicio. Portada, carta, áreas con video, misión y visión, lanzamiento de VYGO, formulario, empleo, preguntas y contacto |
+| `comercios.html` | Página de propuestas, con su formulario |
 | `empleo.html` | Vacantes |
 | `fundadores.html` | Fundadores |
 | `privacidad.html` | Aviso de privacidad |
@@ -40,19 +40,10 @@ y en el teléfono entrar a `http://IP-DE-TU-MÁQUINA:4800`.
 | `img/` y `marca/` | Imágenes y logos |
 | `herramientas/servidor.py` | Servidor local. No forma parte del sitio |
 
-## Estado
+## Publicación
 
-Es un borrador en revisión y todavía no está publicado. Pendiente:
+El sitio se publica con GitHub Pages desde la rama `main` en https://www.vygogroup.com. Cada cambio que llega a `main` queda en línea en uno o dos minutos.
 
-- Fotos de los fundadores. Hoy van las iniciales.
-- El formulario no tiene backend. Arma un correo con `mailto` y abre el programa de correo del visitante.
-- Dominio y hospedaje.
-- La cuenta regresiva apunta al lunes 8 de marzo de 2027 a las 00:00 de Managua. Falta confirmar el día exacto.
+`_config.yml` deja fuera de lo publicado este archivo, la carpeta `herramientas/` y los archivos internos del repositorio.
 
-Antes de publicar:
-
-- Quitar el selector de fuentes de prueba, que aparece con `?fuentes` en la dirección.
-- Agregar `og:image`, `og:url` y `canonical` con la dirección definitiva.
-- Revisión legal del aviso de privacidad.
-- Confirmar los derechos del video de Managua.
-- Dejar fuera de lo que se sirve la carpeta `herramientas/` y este archivo.
+La cuenta regresiva apunta al miércoles 17 de marzo de 2027 a las 00:00 de Managua (`META` en `js/sitio.js`).
