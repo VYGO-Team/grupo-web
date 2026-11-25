@@ -325,8 +325,8 @@ html:not(.sin-js) body.cargando .cinta-pista { animation-play-state: paused; }
   /* en teléfono la hélice también va acostada: la escena es ancha y baja */
   .chx-escena { flex: none; min-height: 0; height: clamp(13rem, 68vw, 30rem); }
 }
-/* tabletas en vertical: también acostada */
-@media (min-width: 701px) and (max-width: 1100px) and (orientation: portrait) {
+/* tabletas en vertical y ventanas altas o casi cuadradas: la escena es ancha y baja, para que la hélice acostada la llene */
+@media (min-width: 701px) and (max-aspect-ratio: 5/4) {
   .chx { min-height: 0; }
   .chx-escena { flex: none; min-height: 0; height: clamp(18rem, 62vw, 34rem); }
 }

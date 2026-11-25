@@ -149,12 +149,10 @@
     for (var i = 0; i < n; i++) ruido[i] = hash(i);
     /* en los bordes del lienzo la hélice se deshace en celdas sueltas, en vez de cortarse */
     borde = new Float32Array(n);
-    var fx = W * 0.07, fy = H * 0.1;
+    var fx = W * 0.07;
     for (var f2 = 0; f2 < filas; f2++) {
       for (var c2 = 0; c2 < cols; c2++) {
-        var e = 1;
-        if (W / H >= 1.35) { var dx2 = Math.min((c2 + 0.5) * cw, W - (c2 + 0.5) * cw); e = dx2 / fx; }
-        else { var dy2 = Math.min((f2 + 0.5) * ch, H - (f2 + 0.5) * ch); e = dy2 / fy; }
+        var dx2 = Math.min((c2 + 0.5) * cw, W - (c2 + 0.5) * cw), e = dx2 / fx;
         e = e > 1 ? 1 : e < 0 ? 0 : e;
         borde[f2 * cols + c2] = e * e * (3 - 2 * e);
       }
@@ -167,29 +165,25 @@
       for (var f = 0; f < filas; f++) fila(azar(1009 + s * 7919 + f * 131), cols, campo[s], f * cols, marca[s]);
     }
     var g = {};
-    var angosto = W / H < 1.35;
-    /* en pantallas anchas la hélice va horizontal; en el teléfono va en diagonal para que quepan más vueltas */
-    g.roll = angosto ? -1.4 : 0;
+    /* la hélice va siempre acostada, en cualquier pantalla y con cualquier proporción de la escena */
+    g.roll = 0;
     /* radio y largo de vuelta: a lo ancho siempre se ven cerca de vuelta y media */
-    if (angosto) { g.R = Math.min(W * 0.3, H * 0.25); g.paso = g.R * 5; }
-    else {
-      g.R = H * 0.39; g.paso = W / (W < 700 ? 1.25 : 1.6);   /* en teléfono, algo más de una vuelta para que la hélice sea más grande */
-      if (g.paso < g.R * 4) g.R = g.paso / 4;
-      if (g.paso > g.R * 5.8) g.paso = g.R * 5.8;
-    }
+    g.R = H * 0.39; g.paso = W / (W < 700 ? 1.25 : 1.6);   /* en teléfono, algo más de una vuelta para que la hélice sea más grande */
+    if (g.paso < g.R * 4) g.R = g.paso / 4;
+    if (g.paso > g.R * 5.8) g.paso = g.R * 5.8;
     g.ox = W * 0.5; g.oy = H * 0.5;
     g.cam = g.R * 6;                         /* cámara cerca: la hebra de adelante crece, la de atrás se achica */
     g.yaw = 0; g.ca = Math.cos(g.yaw); g.sa = Math.sin(g.yaw);
     g.cr = Math.cos(g.roll); g.sr = Math.sin(g.roll);
     g.banda = g.R * 0.42;                    /* ancho de la cinta de cada hebra */
     g.grueso = Math.max(ch * 1.7, g.R * 0.1); /* espesor de la cinta: en las crestas se ve como dos o tres filas */
-    g.rr = angosto ? ch * 0.55 : cw * 1.0;   /* grosor de los peldaños: dos columnas, o una fila en diagonal */
+    g.rr = cw * 1.0;                         /* grosor de los peldaños: dos columnas */
     g.w = Math.PI * 2 / g.paso;
     g.desf = Math.PI * 0.72;                 /* surco mayor y menor, como el ADN */
-    g.peld = angosto ? ch * 2.1 : cw * 6;    /* un peldaño cada seis columnas (o cada dos filas) */
+    g.peld = cw * 6;                         /* un peldaño cada seis columnas */
     g.smax = g.cam / (g.cam - g.R);
     var smin = g.cam / (g.cam + g.R);
-    var alcance = angosto ? Math.sqrt(W * W + H * H) * 0.5 + g.R : W * 0.5;
+    var alcance = W * 0.5;
     g.t1 = alcance / smin + g.banda; g.t0 = -g.t1;
     geo = g;
   }
@@ -224,7 +218,7 @@
     var g = geo;
     zb.fill(-1e9); tipo.fill(0);
     escrituras = 0;
-    var giro = -tiempo * (Math.PI * 2 / 64);   /* las crestas avanzan hacia la derecha (o hacia arriba en el teléfono) */
+    var giro = -tiempo * (Math.PI * 2 / 64);   /* las crestas avanzan hacia la derecha */
     var R = g.R, ca = g.ca, sa = g.sa, cr = g.cr, sr = g.sr, cam = g.cam, ox = g.ox, oy = g.oy, b2 = g.banda * 0.5;
     var pasoT = Math.min(ch / (R * g.w * g.smax), cw * 2 / g.smax) * 0.8;
     var nT = Math.ceil((g.t1 - g.t0) / pasoT) + 1;

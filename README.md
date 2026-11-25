@@ -55,10 +55,13 @@ Para agregar una vacante, copiá la carpeta `empleo/promotor-de-detalle/` con ot
 | `js/codigo.js` | Hélice de código de la sección «Construimos con los mejores desarrolladores de la región» |
 | `js/sitio.js` | Todo lo demás (menú, apariciones al bajar, cuenta regresiva, botón de calendario, formulario, copiar el correo y carga del video) |
 | `video/` | El mismo clip en cuatro archivos, a 1280 y 480 de ancho, cada uno en HEVC y en H.264. `sitio.js` elige según la pantalla y el navegador |
-| `img/` y `marca/` | Imágenes y logos. `img/og-grupo-vygo.png` es la imagen que se ve al compartir un enlace |
+| `img/` y `marca/` | Imágenes y logos. `img/og-grupo-vygo.png` es la imagen que se ve al compartir un enlace de cualquier página. Es el logo solo y entra completo en el recorte cuadrado de WhatsApp |
+| `favicon.ico` y `apple-touch-icon.png` | Ícono en PNG para las apps y navegadores que no leen el favicon en SVG, y el ícono que usa el iPhone |
 | `herramientas/servidor.py` | Servidor local. No forma parte del sitio |
 
 Cada página lleva en su `<head>` el `canonical`, el `og:url` y el `og:image` con la dirección completa de https://www.vygogroup.com. Si cambia el dominio, hay que actualizarlos junto con `sitemap.xml`, `robots.txt` y las cuatro páginas que redirigen.
+
+La imagen de compartir va con `?v=2` al final. WhatsApp, Facebook y LinkedIn guardan la vista previa de cada enlace, así que al cambiar la imagen hay que subir ese número en todas las páginas para que la vuelvan a pedir.
 
 ## Publicación
 
