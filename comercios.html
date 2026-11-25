@@ -1,173 +1,18 @@
 <!doctype html>
-<html lang="es" class="sin-js">
+<html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>document.documentElement.classList.remove('sin-js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Presentá tu negocio · Grupo VYGO</title>
-<meta name="description" content="Grupo VYGO recibe propuestas de negocios en marcha e ideas con futuro, de Nicaragua y de toda Centroamérica.">
-<meta property="og:title" content="Presentá tu negocio · Grupo VYGO">
-<meta property="og:description" content="Grupo VYGO recibe propuestas de negocios en marcha e ideas con futuro, de Nicaragua y de toda Centroamérica.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="es_NI">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="marca/grupo-vygo_favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fuentes/ClashDisplay-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/fuentes.css">
-<link rel="stylesheet" href="css/sitio.css">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.vygogroup.com/propuestas/">
+<!-- Dirección anterior. Lleva a /propuestas/ y conserva el ancla. Sin JavaScript actúa el meta refresh -->
+<script>(function () { var h = location.hash; location.replace('/propuestas/' + location.search + h); })();</script>
+<noscript><meta http-equiv="refresh" content="0; url=/propuestas/"></noscript>
+<link rel="icon" href="/marca/grupo-vygo_favicon.svg" type="image/svg+xml">
+<style>body { margin: 0; padding: 3rem 1.5rem; font: 1.125rem/1.6 'Helvetica Neue', Arial, sans-serif; color: #0B1510; background: #FFFFFF; } a { color: #004822; font-weight: 700; }</style>
 </head>
-<body class="interna">
-
-<a class="saltar" href="#contenido">Saltar al contenido</a>
-
-<header class="nav clara" id="nav">
-  <div class="nav-in">
-    <a class="nav-logo" href="./" aria-label="Grupo VYGO, inicio">
-      <img class="logo-negativo" src="marca/grupo-vygo_horizontal_negativo.svg" alt="" aria-hidden="true" width="200" height="56">
-      <img class="logo-color" src="marca/grupo-vygo_horizontal_color.svg" alt="Grupo VYGO" width="200" height="56">
-    </a>
-    <button class="nav-menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú"><span></span><span></span></button>
-    <nav class="nav-links" id="nav-links" aria-label="Principal">
-      <div class="nav-grupo">
-        <a class="nav-padre" href="./#nosotros">Nosotros<span class="nav-flechita" aria-hidden="true"></span></a>
-        <div class="nav-sub">
-          <a href="./#nosotros">El grupo</a>
-          <a href="./#mision-vision">Misión y visión</a>
-          <a href="fundadores.html">Fundadores</a>
-        </div>
-      </div>
-      <a href="./#areas">Áreas de negocio</a>
-      <a href="comercios.html" aria-current="page">Propuestas</a>
-      <a href="empleo.html">Trabajá con nosotros</a>
-      <a class="solo-menu" href="./#contacto">Contacto</a>
-    </nav>
-    <a class="boton boton-linea nav-cta" href="./#contacto">Contacto</a>
-  </div>
-  <span class="nav-progreso" id="nav-progreso" aria-hidden="true"></span>
-</header>
-
-<main id="contenido">
-  <section class="cabecera">
-    <div class="marco">
-      <h1 class="aparece">Presentá tu negocio <span class="acento">o tu idea.</span></h1>
-      <p class="entrada aparece">Recibimos propuestas de negocios en marcha e ideas con futuro, de Nicaragua y de toda Centroamérica. Evaluamos cada una y te contactamos si encaja con el grupo.</p>
-    </div>
-  </section>
-
-  <section class="seccion seccion-hueso seccion-corta">
-    <div class="marco">
-      <form class="frase-form aparece" id="form-comercio-pagina" method="post" data-correo="vygogroup@gmail.com" data-asunto="Propuesta de negocio" novalidate>
-        <p class="frase">
-          <span class="frase-t">Hola, soy</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Tu nombre</span><input class="hueco" name="Nombre" type="text" autocomplete="name" placeholder="tu nombre" aria-label="Tu nombre" required></span>
-          <span class="frase-t">y les presento</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Nombre del negocio o idea</span><input class="hueco" name="Negocio" type="text" autocomplete="organization" placeholder="nombre del negocio o idea" aria-label="Nombre del negocio o idea" required></span><span class="signo">,</span>
-          <span class="frase-t">un proyecto de</span>
-          <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Rubro</span><select class="hueco" name="Rubro" aria-label="Rubro" required>
-            <option value="">rubro</option>
-            <option>comercio</option>
-            <option>servicios</option>
-            <option>tecnología</option>
-            <option>alimentos y bebidas</option>
-            <option>logística</option>
-            <option>otro rubro</option>
-          </select></span>
-          <span class="frase-t">en</span>
-          <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">País</span><select class="hueco" name="País" aria-label="País">
-            <option selected>Nicaragua</option>
-            <option>Costa Rica</option>
-            <option>El Salvador</option>
-            <option>Guatemala</option>
-            <option>Honduras</option>
-            <option>Panamá</option>
-            <option>otro país</option>
-          </select></span><span class="punto">.</span>
-          <span class="frase-t">Escríbanme a</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Correo</span><input class="hueco" name="Correo" type="email" autocomplete="email" placeholder="tu correo" aria-label="Correo" required></span>
-          <span class="frase-t frase-suave">o por WhatsApp al</span> <span class="frase-campo frase-campo-suave"><span class="frase-rotulo" aria-hidden="true">WhatsApp (opcional)</span><input class="hueco" name="WhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="opcional" aria-label="WhatsApp, opcional"></span><span class="signo">.</span>
-        </p>
-        <div class="formulario-pie">
-          <label class="casilla">
-            <input type="checkbox" name="Consentimiento" aria-label="Autorización para contactarme" required>
-            <span>Acepto que Grupo VYGO use estos datos para contactarme. <a href="privacidad.html">Aviso de privacidad</a></span>
-          </label>
-          <button class="boton boton-solido" type="submit">Enviar propuesta <span class="flecha" aria-hidden="true">→</span></button>
-        </div>
-        <p class="formulario-msg" role="status" aria-live="polite"></p>
-        <noscript><p class="formulario-msg">Para enviar este formulario necesitás JavaScript. Escribinos a <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>.</p></noscript>
-      </form>
-    </div>
-  </section>
-
-  <section class="seccion">
-    <div class="marco">
-      <h2 class="titulo-grande titulo-suelto aparece">Antes de enviar tu propuesta.</h2>
-      <div class="acordeon-doble aparece">
-        <div class="acordeon">
-          <details name="faq">
-            <summary>¿Qué tipo de propuestas reciben?</summary>
-            <p>Negocios en marcha e ideas con un plan claro, de cualquier rubro. Lo que sigue se conversa con las propuestas que avanzan.</p>
-          </details>
-          <details name="faq">
-            <summary>¿Tiene costo presentar una propuesta?</summary>
-            <p>No. Presentarla no tiene costo ni compromiso para ninguna de las dos partes.</p>
-          </details>
-        </div>
-        <div class="acordeon">
-          <details name="faq">
-            <summary>¿Cuándo recibo respuesta?</summary>
-            <p>No hay una fecha fija. Revisamos cada propuesta y, si la tuya avanza, te escribimos.</p>
-          </details>
-          <details name="faq">
-            <summary>¿Qué hacen con mis datos?</summary>
-            <p>Los usamos solo para evaluar tu propuesta y contactarte. En este primer paso no hace falta que envíes información confidencial. Más detalles en el <a href="privacidad.html">aviso de privacidad</a>.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cierre cierre-corto oscuro">
-    <div class="cierre-in aparece">
-      <h2>¿Preferís escribirnos?</h2>
-      <p class="bajada">También recibimos propuestas por correo.</p>
-      <div class="correo-caja">
-        <a class="correo" href="mailto:vygogroup@gmail.com?subject=Propuesta%20de%20negocio">vygogroup@gmail.com</a>
-        <button class="copiar" type="button" data-copiar="vygogroup@gmail.com" aria-label="Copiar el correo">Copiar</button>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="pie oscuro">
-  <div class="pie-in">
-    <div class="pie-marca">
-      <img src="marca/grupo-vygo_horizontal-sa_negativo.svg" alt="Grupo VYGO, S.A." width="220" height="62">
-      <p>Construido en Managua, pensado para Centroamérica.</p>
-    </div>
-    <nav class="pie-col" aria-label="El grupo">
-      <h2>El grupo</h2>
-      <a href="./#nosotros">Nosotros</a>
-      <a href="fundadores.html">Fundadores</a>
-      <a href="./#areas">Áreas de negocio</a>
-      <a href="./#vygo">VYGO</a>
-    </nav>
-    <nav class="pie-col" aria-label="Sumate">
-      <h2>Sumate</h2>
-      <a href="comercios.html">Presentá tu negocio</a>
-      <a href="empleo.html">Trabajá con nosotros</a>
-      <a href="./#contacto">Contacto</a>
-    </nav>
-    <div class="pie-col">
-      <h2>Contacto</h2>
-      <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>
-      <span>Managua, Nicaragua</span>
-    </div>
-  </div>
-  <div class="pie-legal">
-    <p>© <span id="anio">2026</span> Grupo VYGO, S.A. Todos los derechos reservados.</p>
-    <p>Grupo VYGO nunca cobra por participar en un proceso de selección.</p>
-    <p><a href="privacidad.html">Aviso de privacidad</a> · <a href="privacidad.html#aviso-legal">Aviso legal</a></p>
-  </div>
-</footer>
-
-<script src="js/sitio.js"></script>
+<body>
+<p>Esta página cambió de dirección. <a href="/propuestas/">Ir a Presentá tu negocio</a></p>
 </body>
 </html>

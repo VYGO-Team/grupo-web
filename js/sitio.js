@@ -23,43 +23,6 @@
   window.addEventListener('resize', alBajar);
   alBajar();
 
-  // ── selector de fuentes, solo para revisar (?fuentes en la dirección) ──
-  var PAREJAS = {
-    a: { nombre: 'Clash Display + Satoshi', css: null },
-    b: { nombre: 'Inter Tight + Inter', css: 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..800&family=Inter:wght@400..700&display=swap' },
-    c: { nombre: 'Instrument Serif + Geist', css: 'https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400..700&display=swap' },
-    d: { nombre: 'Red Hat Display + Red Hat Text (la del logo)', css: 'https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500..900&family=Red+Hat+Text:wght@400..700&display=swap' }
-  };
-  function guardada() { try { return localStorage.getItem('gv-fuente'); } catch (e) { return null; } }
-  function ponerFuente(k, guardar) {
-    if (!PAREJAS[k]) return;
-    if (PAREJAS[k].css && !document.querySelector('link[data-pareja="' + k + '"]')) {
-      var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = PAREJAS[k].css; l.setAttribute('data-pareja', k);
-      document.head.appendChild(l);
-    }
-    if (k === 'a') raiz.removeAttribute('data-fuente'); else raiz.setAttribute('data-fuente', k);
-    if (guardar) { try { localStorage.setItem('gv-fuente', k); } catch (e) {} }
-    var listo = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    listo.then(function () { setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60); });
-    document.querySelectorAll('.selector-fuentes button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-k') === k ? 'true' : 'false'); });
-    var n = document.querySelector('.selector-fuentes small'); if (n) n.textContent = PAREJAS[k].nombre;
-  }
-  var pedida = /[?&]fuentes(=([a-d]))?/.exec(location.search);
-  if (pedida) {
-    var inicial = (pedida && pedida[2]) || guardada() || 'a';
-    if (pedida) {
-      var panel = document.createElement('div');
-      panel.className = 'selector-fuentes';
-      panel.setAttribute('role', 'group');
-      panel.setAttribute('aria-label', 'Probar fuentes');
-      panel.innerHTML = '<span>Fuentes</span>' + ['a', 'b', 'c', 'd'].map(function (k) { return '<button type="button" data-k="' + k + '" aria-pressed="false">' + k.toUpperCase() + '</button>'; }).join('') + '<small></small>';
-      document.body.appendChild(panel);
-      panel.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) ponerFuente(b.getAttribute('data-k'), true); });
-      // los enlaces internos conservan el selector
-      document.querySelectorAll('a[href$=".html"], a[href="./"], a[href^="./#"]').forEach(function (a) { var u = a.getAttribute('href'); var i = u.indexOf('#'); a.setAttribute('href', (i < 0 ? u : u.slice(0, i)) + '?fuentes' + (i < 0 ? '' : u.slice(i))); });
-    }
-    ponerFuente(inicial, false);
-  }
   function menu(abrir) {
     if (!nav || !boton) return;
     nav.classList.toggle('abierta', abrir);
@@ -353,29 +316,101 @@
     var tamano = window.matchMedia('(max-width: 700px)').matches ? '480' : '1280';
     var hevc = v.canPlayType('video/mp4; codecs="hvc1.1.6.L93.B0"') === 'probably';
     var cargado = false, aLaVista = false;
+    var esperaToque = false, animada = null;
+    // Plan B sin tocar nada: Safari puede mostrar un mp4 dentro de una etiqueta de imagen, como si fuera un GIF,
+    // y eso sigue moviéndose aunque el iPhone esté en modo de bajo consumo. Otros navegadores lo ignoran y queda la foto.
+    function animar() {
+      if (animada !== null) return;
+      animada = new Image();
+      animada.className = 'cine-animada';
+      animada.alt = '';
+      animada.setAttribute('aria-hidden', 'true');
+      animada.onload = function () { if (!animada || !v.paused) return; caja.insertBefore(animada, v); caja.classList.add('con-animada'); };
+      animada.onerror = function () { animada = false; };
+      animada.src = '/video/managua-' + tamano + '.mp4';
+    }
+    function quitarAnimada() {
+      caja.classList.remove('con-animada');
+      if (animada && animada.parentNode) { animada.parentNode.removeChild(animada); animada.removeAttribute('src'); }
+      if (animada) animada = false;
+    }
+    // un toque de la persona sí permite reproducir: el video se muestra y arranca; si aun así falla, vuelve la imagen animada
+    function conToque() {
+      var tenia = caja.classList.contains('con-animada');
+      caja.classList.remove('con-animada');
+      var p = v.play();
+      if (p && p.then) p.then(ajustar, function () { if (tenia) caja.classList.add('con-animada'); });
+    }
+    function alToque() {
+      esperaToque = false;
+      document.removeEventListener('touchend', alToque);
+      document.removeEventListener('click', alToque);
+      document.removeEventListener('keydown', alToque);
+      if (!cargado) return;
+      conToque();
+    }
     function ajustar() {
       if (!cargado) return;
-      if (aLaVista && !document.hidden) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-      else v.pause();
+      if (aLaVista && !document.hidden) {
+        var p = v.play();
+        if (p && p.catch) p.catch(function (err) {
+          // el navegador no dejó reproducir solo (por ejemplo, el iPhone en modo de bajo consumo): arranca con el primer toque
+          if (!err || err.name !== 'NotAllowedError') return;
+          animar();
+          if (esperaToque) return;
+          esperaToque = true;
+          document.addEventListener('touchend', alToque, { passive: true });
+          document.addEventListener('click', alToque);
+          document.addEventListener('keydown', alToque);
+        });
+      } else v.pause();
     }
     function poner() {
       if (cargado) return;
       cargado = true;
-      v.src = 'video/managua-' + tamano + (hevc ? '-hevc' : '') + '.mp4';
+      // la misma foto de fondo es la imagen de espera del video: si el teléfono no deja reproducir solo (ahorro de batería), se ve la foto
+      v.poster = '/img/managua-' + tamano + '.jpg';
+      v.muted = true; v.defaultMuted = true; v.playsInline = true;
+      v.src = '/video/managua-' + tamano + (hevc ? '-hevc' : '') + '.mp4';
+      caja.classList.add('con-video');
       v.load();
       ajustar();
     }
-    v.addEventListener('playing', function () { caja.classList.add('rodando'); });
+    v.addEventListener('playing', function () { caja.classList.add('rodando'); quitarAnimada(); });
     v.addEventListener('error', function () {          // si el formato liviano falla, va el universal
       if (!hevc) return;
       hevc = false;
-      v.src = 'video/managua-' + tamano + '.mp4';
+      v.src = '/video/managua-' + tamano + '.mp4';
       v.load();
       ajustar();
     });
+    // En teléfonos, el primer toque en cualquier parte deja el video habilitado. Así, si el aparato bloquea
+    // el arranque automático (modo de bajo consumo del iPhone), el video igual corre al llegar a la sección.
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      var primerToque = function () {
+        document.removeEventListener('touchend', primerToque);
+        document.removeEventListener('click', primerToque);
+        poner();
+        conToque();
+      };
+      document.addEventListener('touchend', primerToque, { passive: true });
+      document.addEventListener('click', primerToque);
+    }
     new IntersectionObserver(function (e) { if (e[0].isIntersecting) poner(); }, { rootMargin: '700px 0px' }).observe(caja);
     new IntersectionObserver(function (e) { aLaVista = e[0].isIntersecting; ajustar(); }, { threshold: 0.1 }).observe(caja);
     document.addEventListener('visibilitychange', ajustar);
+  })();
+
+  // ── «Avisame cuando salga»: agrega el lanzamiento al calendario del teléfono ──
+  // iPhone, Mac y Outlook abren el archivo .ics y ofrecen agregarlo. En Android se abre Google Calendar con el evento listo.
+  (function () {
+    var b = document.getElementById('boton-calendario');
+    if (!b) return;
+    if (/Android/i.test(navigator.userAgent) && b.getAttribute('data-google')) {
+      b.href = b.getAttribute('data-google');
+      b.target = '_blank';
+      b.rel = 'noopener';
+    }
   })();
 
   // ── año del pie ───────────────────────────────────────────────────────
