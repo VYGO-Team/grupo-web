@@ -173,7 +173,7 @@
     /* radio y largo de vuelta: a lo ancho siempre se ven cerca de vuelta y media */
     if (angosto) { g.R = Math.min(W * 0.3, H * 0.25); g.paso = g.R * 5; }
     else {
-      g.R = H * 0.39; g.paso = W / 1.6;
+      g.R = H * 0.39; g.paso = W / (W < 700 ? 1.25 : 1.6);   /* en teléfono, algo más de una vuelta para que la hélice sea más grande */
       if (g.paso < g.R * 4) g.R = g.paso / 4;
       if (g.paso > g.R * 5.8) g.paso = g.R * 5.8;
     }

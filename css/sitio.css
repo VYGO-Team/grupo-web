@@ -322,7 +322,13 @@ html:not(.sin-js) body.cargando .cinta-pista { animation-play-state: paused; }
 @media (max-width: 700px) {
   .chx { min-height: 0; padding-top: clamp(4rem, 16vw, 5.5rem); }
   .chx-titulo { font-size: clamp(2rem, 9.4vw, 3rem); }
-  .chx-escena { flex: none; height: clamp(28rem, 150vw, 44rem); }
+  /* en teléfono la hélice también va acostada: la escena es ancha y baja */
+  .chx-escena { flex: none; min-height: 0; height: clamp(13rem, 68vw, 30rem); }
+}
+/* tabletas en vertical: también acostada */
+@media (min-width: 701px) and (max-width: 1100px) and (orientation: portrait) {
+  .chx { min-height: 0; }
+  .chx-escena { flex: none; min-height: 0; height: clamp(18rem, 62vw, 34rem); }
 }
 /* sin JavaScript queda el título y el texto, sin el hueco del lienzo */
 .sin-js .chx-escena { display: none; }
