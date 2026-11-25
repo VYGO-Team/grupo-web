@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="es" class="sin-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.classList.remove('sin-js');setTimeout(function(){document.body.classList.remove('cargando')},4000)</script>
+<title>Grupo VYGO</title>
+<meta name="description" content="Grupo empresarial nicaragüense con sede en Managua. Construimos empresas y marcas de tecnología, comercio y logística, pensadas para durar.">
+<meta property="og:title" content="Grupo VYGO">
+<meta property="og:description" content="Un grupo, varias formas de mover Nicaragua.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_NI">
+<meta name="theme-color" content="#05190F">
+<link rel="icon" href="marca/grupo-vygo_favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fuentes/ClashDisplay-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/Satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fuentes.css">
+<link rel="stylesheet" href="css/sitio.css">
+</head>
+<body class="cargando">
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<div class="carga" id="carga" aria-hidden="true"><span class="carga-aro"></span></div>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="nav-logo" href="./" aria-label="Grupo VYGO, inicio">
+      <img class="logo-negativo" src="marca/grupo-vygo_horizontal_negativo.svg" alt="Grupo VYGO" width="200" height="56">
+      <img class="logo-color" src="marca/grupo-vygo_horizontal_color.svg" alt="" aria-hidden="true" width="200" height="56">
+    </a>
+    <button class="nav-menu" id="nav-menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú"><span></span><span></span></button>
+    <nav class="nav-links" id="nav-links" aria-label="Principal">
+      <div class="nav-grupo">
+        <a class="nav-padre" href="#nosotros">Nosotros<span class="nav-flechita" aria-hidden="true"></span></a>
+        <div class="nav-sub">
+          <a href="#nosotros">El grupo</a>
+          <a href="#mision-vision">Misión y visión</a>
+          <a href="fundadores.html">Fundadores</a>
+        </div>
+      </div>
+      <a href="#areas">Áreas de negocio</a>
+      <a href="#comercios">Alianzas</a>
+      <a href="empleo.html">Trabajá con nosotros</a>
+      <a class="solo-menu" href="#contacto">Contacto</a>
+    </nav>
+    <a class="boton boton-linea nav-cta" href="#contacto">Contacto</a>
+  </div>
+  <span class="nav-progreso" id="nav-progreso" aria-hidden="true"></span>
+</header>
+
+<main id="contenido">
+
+  <!-- ═══ PORTADA ═══ -->
+  <section class="apertura oscuro" id="inicio" aria-labelledby="titular">
+    <canvas class="apertura-lienzo" id="apertura-lienzo" aria-hidden="true"></canvas>
+    <img class="apertura-respaldo" src="marca/grupo-vygo_simbolo_negativo.svg" alt="" aria-hidden="true">
+    <div class="apertura-contenido">
+      <div class="apertura-texto">
+        <h1 id="titular" aria-label="Tecnología, comercio, logística, marcas y Nicaragua, en movimiento.">
+          <span class="rotador" id="rotador" aria-hidden="true">
+            <span class="palabra activa">Tecnología</span>
+            <span class="palabra">Comercio</span>
+            <span class="palabra">Logística</span>
+            <span class="palabra">Marcas</span>
+            <span class="palabra">Nicaragua</span>
+          </span>
+          <span class="fija" aria-hidden="true">en movimiento.</span>
+        </h1>
+        <div class="simbolo-hueco" id="simbolo-hueco" aria-hidden="true"></div>
+        <p class="apertura-bajada">Grupo empresarial nicaragüense con sede en Managua. Construimos empresas y marcas de tecnología, comercio y logística, hechas aquí y pensadas para durar.</p>
+        <div class="apertura-acciones">
+          <a class="boton boton-solido" href="empleo.html">Trabajá con nosotros <span class="flecha" aria-hidden="true">→</span></a>
+          <a class="boton boton-linea" href="#nosotros">Descubrí el grupo <span class="flecha flecha-abajo" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="cifras" id="cifras">
+      <div class="cifra"><span class="cifra-valor odometro" data-valor="2026">2026</span><span class="cifra-nombre">Año de fundación</span></div>
+      <div class="cifra"><span class="cifra-valor">Managua</span><span class="cifra-nombre">Sede del grupo</span></div>
+      <div class="cifra"><span class="cifra-valor odometro" data-valor="04">04</span><span class="cifra-nombre">Frentes de negocio</span></div>
+    </div>
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta-pista">
+        <span>Servicios digitales</span><i></i><span>Comercio electrónico</span><i></i><span>Logística</span><i></i><span>Software</span><i></i><span>Multimedia</span><i></i><span>Franquicias</span><i></i><span>Marcas</span><i></i><span>Desde Managua</span><i></i>
+        <span>Servicios digitales</span><i></i><span>Comercio electrónico</span><i></i><span>Logística</span><i></i><span>Software</span><i></i><span>Multimedia</span><i></i><span>Franquicias</span><i></i><span>Marcas</span><i></i><span>Desde Managua</span><i></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NOSOTROS: LA CARTA ═══ -->
+  <section class="seccion seccion-hueso carta-seccion" id="nosotros" aria-labelledby="t-nosotros">
+    <div class="marco carta-in">
+      <div class="aparece">
+        <h2 class="titulo-grande" id="t-nosotros">Somos de aquí. <span class="acento">Construimos para aquí.</span></h2>
+        <svg class="trazo" viewBox="0 0 300 24" aria-hidden="true"><path d="M4 16C70 8 160 6 286 12"/><path class="trazo-punta" d="M272 4l14 8-14 8"/></svg>
+        <p class="carta-enlace"><a class="enlace-flecha" href="fundadores.html">Conocé a los fundadores <span class="flecha" aria-hidden="true">→</span></a></p>
+      </div>
+      <article class="carta aparece" aria-label="Carta del equipo fundador">
+        <p class="carta-saludo">A quien lea esto,</p>
+        <p>Grupo VYGO nace en Managua con la convicción de que desde aquí se pueden construir empresas grandes, serias y con nombre propio.</p>
+        <p class="carta-resalto"><mark>Construimos para la próxima generación, no para el próximo trimestre.</mark></p>
+        <p>Por eso fundamos un grupo. Son varias compañías bajo una misma dirección, con equipos de aquí y decisiones tomadas aquí.</p>
+        <p>El trabajo empieza ahora. Si querés ser parte, como aliado, como colaborador o con una idea, hay lugar para vos.</p>
+        <div class="carta-firma">
+          <img src="marca/grupo-vygo_simbolo_color.svg" alt="" width="40" height="40">
+          <div><b>El equipo fundador</b><span>Grupo VYGO, S.A. · Managua</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ ÁREAS DE NEGOCIO ═══ -->
+  <section class="areas-seccion" id="areas" aria-labelledby="t-areas">
+    <!-- fondo: tomas aéreas de Managua. Sin JavaScript, con «reducir movimiento» o con ahorro de datos queda la foto -->
+    <div class="cine oscuro" id="cine">
+      <picture class="cine-foto">
+        <source media="(max-width: 700px)" srcset="img/managua-480.jpg" width="480" height="816">
+        <img src="img/managua-1280.jpg" alt="Vista aérea de Managua, con el lago Xolotlán al fondo" width="1280" height="534" loading="lazy" decoding="async">
+      </picture>
+      <video class="cine-video" id="cine-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture></video>
+      <div class="cine-velo" aria-hidden="true"></div>
+      <div class="marco cine-texto">
+        <h2 class="titulo-xl aparece" id="t-areas">Un grupo, varias formas de mover Nicaragua.</h2>
+        <p class="entrada aparece">Grupo VYGO es dueño de las plataformas que nosotros mismos creamos. Tenemos cuatro frentes de negocio y una sola ambición. Queremos levantar desde aquí lo que el país necesita para avanzar.</p>
+        <ol class="frentes" aria-label="Frentes de negocio">
+          <li class="frente aparece">
+            <span class="frente-num">01</span>
+            <h3>Servicios digitales y comercio electrónico</h3>
+            <p>Canales digitales para el comercio en línea, diseñados para la forma en que se hace negocio en Nicaragua.</p>
+          </li>
+          <li class="frente aparece">
+            <span class="frente-num">02</span>
+            <h3>Logística</h3>
+            <p>La coordinación entre quien produce, quien vende y quien compra. Orden y control en cada eslabón de la cadena.</p>
+          </li>
+          <li class="frente aparece">
+            <span class="frente-num">03</span>
+            <h3>Software y multimedia</h3>
+            <p>Código y contenido hechos en casa. El software y la imagen de cada marca del grupo se crean aquí.</p>
+          </li>
+          <li class="frente aparece">
+            <span class="frente-num">04</span>
+            <h3>Franquicias y marcas</h3>
+            <p>Marcas diseñadas para crecer y replicarse. Lo que funciona en Managua tiene que funcionar en todo el país.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MISIÓN Y VISIÓN (dos hojas, como la carta) ═══ -->
+  <section class="seccion seccion-hueso" id="mision-vision" aria-label="Misión y visión">
+    <div class="marco hojas">
+      <article class="hoja hoja-a aparece">
+        <h2>Misión</h2>
+        <p>Transformar el comercio electrónico y la logística en <mark>toda Centroamérica</mark> a través de soluciones digitales, tecnología, software y gestión estratégica de marcas.</p>
+      </article>
+      <article class="hoja hoja-b aparece">
+        <h2>Visión</h2>
+        <p>Consolidarnos como un <mark>referente líder en logística y soluciones digitales</mark> a nivel nacional e internacional, expandiendo nuestro alcance mediante la innovación en software y multimedia, el desarrollo de nuevos negocios tecnológicos y comerciales, y la gestión estratégica de marcas y franquicias.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ LO QUE NO NEGOCIAMOS (un principio a la vez, en grande) ═══ -->
+  <section class="seccion credo-seccion" id="principios" aria-labelledby="t-principios">
+    <div class="marco">
+      <h2 class="credo-titulo aparece" id="t-principios">Lo que no negociamos</h2>
+      <div class="credo aparece" id="credo">
+        <div class="credo-escena" id="credo-escena" aria-hidden="true">
+          <p class="credo-nombre">De palabra.</p>
+          <p class="credo-texto">Si lo decimos, lo hacemos. Y si no podemos, lo avisamos antes.</p>
+        </div>
+        <ol class="credo-lista">
+          <li><button type="button" class="credo-boton activo" aria-pressed="true"><span class="credo-n">01</span><span class="credo-b-nombre">De palabra</span></button><span class="credo-desc">Si lo decimos, lo hacemos. Y si no podemos, lo avisamos antes.</span></li>
+          <li><button type="button" class="credo-boton" aria-pressed="false"><span class="credo-n">02</span><span class="credo-b-nombre">Cerca del terreno</span></button><span class="credo-desc">Las respuestas se buscan donde pasa el trabajo.</span></li>
+          <li><button type="button" class="credo-boton" aria-pressed="false"><span class="credo-n">03</span><span class="credo-b-nombre">Velocidad con criterio</span></button><span class="credo-desc">Actuamos rápido y cada decisión tiene un porqué.</span></li>
+          <li><button type="button" class="credo-boton" aria-pressed="false"><span class="credo-n">04</span><span class="credo-b-nombre">La operación primero</span></button><span class="credo-desc">Ninguna idea vale más que su ejecución diaria.</span></li>
+          <li><button type="button" class="credo-boton" aria-pressed="false"><span class="credo-n">05</span><span class="credo-b-nombre">Paso firme</span></button><span class="credo-desc">Probamos en pequeño, medimos en serio y crecemos sobre lo que funciona.</span></li>
+          <li><button type="button" class="credo-boton" aria-pressed="false"><span class="credo-n">06</span><span class="credo-b-nombre">Nadie gana solo</span></button><span class="credo-desc">Si un aliado, un colaborador o un cliente no gana con nosotros, no es un buen negocio.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DÓNDE ESTAMOS ═══ -->
+  <section class="seccion" id="hitos" aria-labelledby="t-hitos">
+    <div class="marco">
+      <div class="fila-titulo">
+        <h2 class="titulo-grande aparece" id="t-hitos">Dónde estamos.</h2>
+        <p class="remate aparece">Esto apenas empieza.</p>
+      </div>
+      <div class="via aparece" id="via">
+        <div class="via-linea" aria-hidden="true">
+          <span class="via-avance"></span><span class="via-futuro"></span>
+          <span class="via-marcador"><img src="marca/grupo-vygo_simbolo_color.svg" alt=""></span>
+        </div>
+        <ol class="hitos">
+          <li class="hito hecho"><span class="hito-punto"></span><span class="hito-cuando" id="hito-anio">2026</span><p>Nace Grupo VYGO en Managua.</p></li>
+          <li class="hito ahora"><span class="hito-punto"></span><span class="hito-cuando">Hoy</span><p>Estamos construyendo VYGO y formando su primer equipo.</p></li>
+          <li class="hito futuro"><span class="hito-punto"></span><span class="hito-cuando">Marzo 2027</span><p>Lanzamos VYGO. Detrás vienen las demás plataformas del grupo.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VYGO: PRÓXIMO LANZAMIENTO, CON CUENTA REGRESIVA Y FONDO ANIMADO ═══ -->
+  <section class="vygo-seccion" id="vygo" aria-labelledby="t-vygo">
+    <canvas class="vygo-lienzo" id="vygo-lienzo" aria-hidden="true"></canvas>
+    <div class="marco vygo-in">
+      <div class="aparece">
+        <h2 class="titulo-grande" id="t-vygo">Próximo lanzamiento.</h2>
+        <p class="bajada">VYGO es la primera plataforma del grupo. Se lanza la segunda semana de marzo de 2027.</p>
+        <a class="boton boton-lima" href="mailto:vygogroup@gmail.com?subject=Av%C3%ADsenme%20cuando%20salga%20VYGO">Avisame cuando salga <span class="flecha" aria-hidden="true">→</span></a>
+      </div>
+      <img class="vygo-logo aparece" src="img/vygo-logo-lima.png" alt="vygo" width="1400" height="502">
+      <div class="cuenta aparece" id="cuenta" role="timer" aria-label="Tiempo que falta para el lanzamiento de VYGO">
+        <div class="cuenta-u"><span class="cuenta-n" data-u="d">000</span><span class="cuenta-r">días</span></div>
+        <div class="cuenta-u"><span class="cuenta-n" data-u="h">00</span><span class="cuenta-r">horas</span></div>
+        <div class="cuenta-u"><span class="cuenta-n" data-u="m">00</span><span class="cuenta-r">minutos</span></div>
+        <div class="cuenta-u"><span class="cuenta-n" data-u="s">00</span><span class="cuenta-r">segundos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROPUESTAS: negocios e ideas donde el grupo invierte, compra o se asocia (formulario en forma de frase) ═══ -->
+  <section class="seccion seccion-hueso" id="comercios" aria-labelledby="t-comercios">
+    <div class="marco">
+      <h2 class="titulo-grande aparece" id="t-comercios">¿Tenés un negocio <span class="acento">o una buena idea?</span></h2>
+      <p class="entrada porque aparece">Si tenés un negocio en marcha o una idea con futuro, presentanos tu propuesta. Evaluamos cada una y te contactamos si encaja con el grupo.</p>
+      <form class="frase-form aparece" id="form-comercio" method="post" data-correo="vygogroup@gmail.com" data-asunto="Propuesta de negocio" novalidate>
+        <p class="frase">
+          <span class="frase-t">Hola, soy</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Tu nombre</span><input class="hueco" name="Nombre" type="text" autocomplete="name" placeholder="tu nombre" aria-label="Tu nombre" required></span>
+          <span class="frase-t">y les presento</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Nombre del negocio o idea</span><input class="hueco" name="Negocio" type="text" autocomplete="organization" placeholder="nombre del negocio o idea" aria-label="Nombre del negocio o idea" required></span><span class="signo">,</span>
+          <span class="frase-t">un proyecto de</span>
+          <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Rubro</span><select class="hueco" name="Rubro" aria-label="Rubro" required>
+            <option value="">rubro</option>
+            <option>comercio</option>
+            <option>servicios</option>
+            <option>tecnología</option>
+            <option>alimentos y bebidas</option>
+            <option>logística</option>
+            <option>otro rubro</option>
+          </select></span>
+          <span class="frase-t">en</span>
+          <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">País</span><select class="hueco" name="País" aria-label="País">
+            <option selected>Nicaragua</option>
+            <option>Costa Rica</option>
+            <option>El Salvador</option>
+            <option>Guatemala</option>
+            <option>Honduras</option>
+            <option>Panamá</option>
+            <option>otro país</option>
+          </select></span><span class="punto">.</span>
+          <span class="frase-t">Escríbanme a</span> <span class="frase-campo"><span class="frase-rotulo" aria-hidden="true">Correo</span><input class="hueco" name="Correo" type="email" autocomplete="email" placeholder="tu correo" aria-label="Correo" required></span>
+          <span class="frase-t frase-suave">o por WhatsApp al</span> <span class="frase-campo frase-campo-suave"><span class="frase-rotulo" aria-hidden="true">WhatsApp (opcional)</span><input class="hueco" name="WhatsApp" type="tel" inputmode="tel" autocomplete="tel" placeholder="opcional" aria-label="WhatsApp, opcional"></span><span class="signo">.</span>
+        </p>
+        <div class="formulario-pie">
+          <label class="casilla">
+            <input type="checkbox" name="Consentimiento" aria-label="Autorización para contactarme" required>
+            <span>Acepto que Grupo VYGO use estos datos para contactarme. <a href="privacidad.html">Aviso de privacidad</a></span>
+          </label>
+          <button class="boton boton-solido" type="submit">Enviar propuesta <span class="flecha" aria-hidden="true">→</span></button>
+        </div>
+        <p class="formulario-msg" role="status" aria-live="polite"></p>
+        <noscript><p class="formulario-msg">Para enviar este formulario necesitás JavaScript. Escribinos a <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>.</p></noscript>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══ EMPLEO ═══ -->
+  <section class="seccion empleo-seccion" id="empleo" aria-labelledby="t-empleo">
+    <div class="empleo-fondo" aria-hidden="true"><div class="cinta-pista"><span>Estamos contratando</span><span>Sumate al primer equipo</span><span>Estamos contratando</span><span>Sumate al primer equipo</span><span>Estamos contratando</span><span>Sumate al primer equipo</span><span>Estamos contratando</span><span>Sumate al primer equipo</span></div></div>
+    <div class="marco dos-col">
+      <div class="aparece">
+        <h2 class="titulo-grande" id="t-empleo">Trabajá con <span class="acento">nosotros.</span></h2>
+        <p class="bajada">Quien se suma ahora pone las bases de lo que sigue. Si sos de los que cumplen, queremos conocerte.</p>
+        <a class="boton boton-lima" href="empleo.html">Ver vacantes <span class="flecha" aria-hidden="true">→</span></a>
+      </div>
+      <a class="vacante aparece" href="empleo.html#promotor-de-detalle">
+        <span class="vacante-foto-caja"><img class="vacante-foto" src="img/vacante-promotor-720.jpg" alt="" width="720" height="900" loading="lazy"></span>
+        <span class="vacante-texto">
+          <span class="vacante-abierta"><i></i>Vacante abierta</span>
+          <strong>Promotor de Detalle</strong>
+          <span class="vacante-datos"><span>Managua</span><span>Inicio inmediato</span></span>
+          <span class="vacante-ir">Conocé la vacante <span class="flecha" aria-hidden="true">→</span></span>
+        </span>
+        <span class="vacante-sello" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><defs><path id="aro-sello" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs><circle cx="60" cy="60" r="60" fill="#A1D400"/><text><textPath href="#aro-sello" textLength="276" lengthAdjust="spacing">ESTAMOS CONTRATANDO · ESTAMOS CONTRATANDO · </textPath></text></svg>
+          <img src="marca/grupo-vygo_simbolo_verde.svg" alt="">
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ PREGUNTAS ═══ -->
+  <section class="seccion" id="preguntas" aria-labelledby="t-preguntas">
+    <div class="marco">
+      <div class="fila-titulo">
+        <h2 class="titulo-grande aparece" id="t-preguntas">Preguntas frecuentes.</h2>
+        <a class="enlace-flecha aparece" href="#contacto">¿Otra duda? Escribinos <span class="flecha" aria-hidden="true">→</span></a>
+      </div>
+      <div class="acordeon-doble aparece">
+        <div class="acordeon">
+          <details name="faq">
+            <summary>¿Qué es Grupo VYGO?</summary>
+            <p>Un grupo empresarial nicaragüense con sede en Managua, fundado en 2026. Trabajamos en servicios digitales y comercio electrónico, logística, software y multimedia, y franquicias y marcas.</p>
+          </details>
+          <details name="faq">
+            <summary>¿Qué es VYGO?</summary>
+            <p>Es la primera plataforma del grupo. Conecta a los comercios de Managua con más clientes y se lanza la segunda semana de marzo de 2027. Los detalles se presentan más cerca del lanzamiento.</p>
+          </details>
+          <details name="faq">
+            <summary>¿Dónde están?</summary>
+            <p>Nuestra sede está en Managua, Nicaragua. Desde aquí trabajamos pensando en todo el país.</p>
+          </details>
+        </div>
+        <div class="acordeon">
+          <details name="faq">
+            <summary>¿Cómo presento mi negocio o mi idea?</summary>
+            <p>Completá el <a href="#comercios">formulario de propuestas</a>. Evaluamos cada una y te contactamos si encaja con el grupo.</p>
+          </details>
+          <details name="faq">
+            <summary>¿Cómo me postulo a una vacante?</summary>
+            <p>Mirá las <a href="empleo.html">vacantes abiertas</a> y enviá tu CV a <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a> con el nombre del puesto en el asunto. Si tu perfil encaja, te escribimos para coordinar una entrevista.</p>
+          </details>
+          <details name="faq">
+            <summary>¿Cobran por el proceso de selección?</summary>
+            <p>No, nunca. Grupo VYGO no cobra por postularse, por la entrevista ni por ningún paso del proceso. Si alguien te solicita dinero en nuestro nombre, no nos representa. Si te pasa, escribinos a <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HABLEMOS ═══ -->
+  <section class="cierre oscuro" id="contacto" aria-labelledby="t-contacto">
+    <div class="cierre-in aparece">
+      <img class="cierre-simbolo" src="marca/grupo-vygo_simbolo_negativo.svg" alt="" aria-hidden="true">
+      <h2 id="t-contacto">Hablemos.</h2>
+      <p class="bajada">¿Tenés un negocio, buscás trabajo o querés proponernos algo? Escribinos y te respondemos.</p>
+      <div class="correo-caja">
+        <a class="correo" href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>
+        <button class="copiar" type="button" data-copiar="vygogroup@gmail.com" aria-label="Copiar el correo">Copiar</button>
+      </div>
+      <div class="cierre-botones">
+        <a class="boton boton-solido" href="empleo.html">Trabajá con nosotros</a>
+        <a class="boton boton-linea" href="#comercios">Presentá tu negocio</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie oscuro">
+  <div class="pie-in">
+    <div class="pie-marca">
+      <img src="marca/grupo-vygo_horizontal-sa_negativo.svg" alt="Grupo VYGO, S.A." width="220" height="62">
+      <p>Construido en Managua, pensado para Nicaragua.</p>
+    </div>
+    <nav class="pie-col" aria-label="El grupo">
+      <h2>El grupo</h2>
+      <a href="#nosotros">Nosotros</a>
+      <a href="fundadores.html">Fundadores</a>
+      <a href="#areas">Áreas de negocio</a>
+      <a href="#vygo">VYGO</a>
+    </nav>
+    <nav class="pie-col" aria-label="Sumate">
+      <h2>Sumate</h2>
+      <a href="#comercios">Presentá tu negocio</a>
+      <a href="empleo.html">Trabajá con nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="pie-col">
+      <h2>Contacto</h2>
+      <a href="mailto:vygogroup@gmail.com">vygogroup@gmail.com</a>
+      <span>Managua, Nicaragua</span>
+    </div>
+  </div>
+  <div class="pie-legal">
+    <p>© <span id="anio">2026</span> Grupo VYGO, S.A. Todos los derechos reservados.</p>
+    <p>Grupo VYGO nunca cobra por participar en un proceso de selección.</p>
+    <p><a href="privacidad.html">Aviso de privacidad</a> · <a href="privacidad.html#aviso-legal">Aviso legal</a></p>
+  </div>
+</footer>
+
+<script src="js/apertura.js"></script>
+<script src="js/sitio.js"></script>
+<script src="js/vygo.js"></script>
+</body>
+</html>
