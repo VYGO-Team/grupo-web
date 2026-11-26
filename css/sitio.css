@@ -516,7 +516,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 @media (max-width: 700px) { .cierre h2.cierre-frase { font-size: clamp(1.75rem, 8.2vw, 2.25rem); } }
 .cierre .bajada { margin-left: auto; margin-right: auto; text-wrap: balance; }
 .correo-caja { margin-top: 2.5rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-/* el correo va siempre en una sola línea: la letra se achica en pantallas angostas según su largo (--letras, 19 por defecto = vygogroup@gmail.com) */
+/* el correo va siempre en una sola línea: la letra se achica en pantallas angostas según su largo (--letras, 19 por defecto; info@vygogroup.com mide 18) */
 .correo { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: min(clamp(1.625rem, 3.2vw, 2.625rem), calc((100vw - var(--lado) - var(--lado-d)) / (var(--letras, 19) * .6))); white-space: nowrap; color: var(--lima); border-bottom: 2px solid rgba(161, 212, 0, .35); transition: border-color .2s ease; }
 .correo:hover { border-color: var(--lima); }
 .copiar { font: 700 0.875rem var(--f-texto); min-height: 2.75rem; padding: 0 1rem; border-radius: 62.4375rem; border: 1.5px solid var(--borde-fuerte); background: transparent; color: var(--tinta); cursor: pointer; }
