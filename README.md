@@ -38,6 +38,8 @@ Cada página vive en su propia carpeta, con un `index.html` adentro, así la dir
 
 Las direcciones anteriores (`empleo.html`, `comercios.html`, `fundadores.html` y `privacidad.html`) siguen en la raíz como páginas mínimas que redirigen a la nueva y conservan el ancla. `empleo.html#promotor-de-detalle` lleva a `/empleo/oficial-de-expansion-junior/`. No hay que borrarlas mientras existan enlaces viejos circulando.
 
+Las hojas de estilo y los scripts se enlazan con un número de versión (`/css/sitio.css?v=…`). Cada vez que cambie un CSS o un JS hay que subir ese número en todas las páginas, para que ningún navegador mezcle una página nueva con estilos viejos guardados.
+
 Todas las rutas internas son absolutas desde la raíz (`/css/sitio.css`, `/img/…`, `/empleo/`). Por eso el sitio tiene que servirse en la raíz de un dominio o de un servidor local, y no funciona abriendo los archivos con doble clic. La única excepción son las `url(../…)` dentro de los CSS, que son relativas al propio archivo.
 
 Para agregar una vacante, copiá la carpeta `empleo/oficial-de-expansion-junior/` con otro nombre, cambiá sus textos, su `canonical`, su `og:url` y el JobPosting, sumá una fila en `empleo/index.html` (un `article.fila-vacante` con su `h2.fila-nombre`, el estado `estado-abierta` «Disponible» y el enlace de LinkedIn) y la dirección nueva en `sitemap.xml`. Cuando una vacante se cierra, su fila lleva la clase `fila-cerrada`, el estado `estado-cerrada` «Cerrada», sin enlace a la página ni a LinkedIn.

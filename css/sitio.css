@@ -43,7 +43,8 @@ body {
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
   text-rendering: optimizeLegibility;
 }
-img { max-width: 100%; display: block; }
+/* height: auto protege la proporción aunque una página nueva se muestre con una hoja de estilos vieja guardada en el teléfono */
+img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3 { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); line-height: var(--alto-titulo); margin: 0; text-wrap: balance; }
 p { margin: 0; text-wrap: pretty; }
