@@ -72,53 +72,49 @@
 </header>
 
 <main id="contenido">
-  <section class="cabecera cabecera-fila cabecera-baja cabecera-vacante">
-    <div class="marco">
-      <div>
+  <!-- Una sola plana: el anuncio a la izquierda (fijo al bajar en computadora) y a la derecha el título, los datos,
+       las acciones, los requisitos y cómo postularse. En tableta y teléfono se apila en este mismo orden -->
+  <section class="puesto" aria-labelledby="puesto-titulo">
+    <div class="marco puesto-in">
+      <header class="puesto-cabeza">
         <nav class="miga aparece" aria-label="Ruta de la página">
           <a href="/empleo/">Trabajá con nosotros</a><span aria-hidden="true">/</span><span>Oficial de Expansión Junior</span>
         </nav>
-        <h1 class="aparece">Oficial de Expansión Junior</h1>
-      </div>
-      <dl class="ficha aparece">
-        <div><dt>Estado</dt><dd class="estado-ficha"><i></i>Disponible</dd></div>
-        <div><dt>Lugar</dt><dd>Managua</dd></div>
-        <div><dt>Inicio</dt><dd>Inmediato</dd></div>
-        <div><dt>Necesitás</dt><dd>Moto propia</dd></div>
-      </dl>
-    </div>
-  </section>
+        <h1 class="aparece" id="puesto-titulo">Oficial de Expansión Junior</h1>
+        <ul class="puesto-datos aparece">
+          <li class="puesto-estado"><i aria-hidden="true"></i>Disponible</li>
+          <li>Managua</li>
+          <li>Inicio inmediato</li>
+        </ul>
+        <div class="puesto-acciones aparece">
+          <a class="boton boton-solido" href="mailto:reclutamiento@vygogroup.com?subject=Oficial%20de%20Expansi%C3%B3n%20Junior">Enviar mi CV <span class="flecha" aria-hidden="true">→</span></a>
+          <a class="boton boton-linea boton-linkedin" href="https://www.linkedin.com/posts/grupo-vygo_empleomanagua-ventas-grupovygo-activity-7531833873975005184-JEwS" target="_blank" rel="noopener"><svg class="icono-li" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>Ver en LinkedIn<span class="oculto"> (se abre en otra pestaña)</span></a>
+        </div>
+      </header>
 
-  <section class="seccion seccion-hueso seccion-corta" aria-label="Detalle de la vacante">
-    <div class="marco detalle-in detalle-vacante">
-      <figure class="detalle-foto aparece">
-        <img src="/img/vacante-oficial-expansion-720.jpg" srcset="/img/vacante-oficial-expansion-720.jpg 720w, /img/vacante-oficial-expansion.jpg 1080w" sizes="(max-width: 900px) 100vw, 480px" width="1080" height="1350"
+      <figure class="puesto-foto aparece">
+        <img src="/img/vacante-oficial-expansion-720.jpg" srcset="/img/vacante-oficial-expansion-720.jpg 720w, /img/vacante-oficial-expansion.jpg 1080w, /img/vacante-oficial-expansion-1620.jpg 1620w" sizes="(max-width: 640px) 100vw, (max-width: 900px) 40vw, 36vw" width="1080" height="1350"
              alt="Anuncio de la vacante. Un joven sostiene una tabla de Grupo VYGO frente a la Antigua Catedral de Managua, con una moto detrás.">
       </figure>
-      <div class="detalle-texto">
-        <div class="aparece">
-          <h2 class="subtitulo">Requisitos</h2>
-          <ol class="requisitos">
-            <li><span>01</span>Conocimientos en ventas</li>
-            <li><span>02</span>Conocimientos en tecnología</li>
-            <li><span>03</span>Residencia en Managua</li>
-            <li><span>04</span>Disponibilidad inmediata</li>
-            <li><span>05</span>Conocimiento de las rutas de Managua</li>
-            <li><span>06</span>Moto propia con documentos al día</li>
-          </ol>
-        </div>
-        <div class="aplicar aparece">
-          <h2 class="subtitulo">Cómo postularte</h2>
-          <p>Enviá tu CV a <a href="mailto:reclutamiento@vygogroup.com?subject=Oficial%20de%20Expansi%C3%B3n%20Junior">reclutamiento@vygogroup.com</a> con el asunto <b>Oficial de Expansión Junior</b>. Si tu perfil encaja, te contactamos para una entrevista y ahí te contamos todo sobre el puesto.</p>
-          <div class="aplicar-botones">
-            <a class="boton boton-solido" href="mailto:reclutamiento@vygogroup.com?subject=Oficial%20de%20Expansi%C3%B3n%20Junior">Enviar mi CV <span class="flecha" aria-hidden="true">→</span></a>
-            <button class="boton boton-linea" type="button" data-copiar="reclutamiento@vygogroup.com">Copiar el correo</button>
-          </div>
-        </div>
+
+      <div class="puesto-requisitos aparece">
+        <h2 class="subtitulo">Requisitos</h2>
+        <ul class="requisitos">
+          <li>Conocimientos en ventas</li>
+          <li>Conocimientos en tecnología</li>
+          <li>Residencia en Managua</li>
+          <li>Disponibilidad inmediata</li>
+          <li>Conocimiento de las rutas de Managua</li>
+          <li>Moto propia con documentos al día</li>
+        </ul>
       </div>
-      <aside class="aviso aparece" aria-label="Aviso antifraude">
-        <b>Grupo VYGO no cobra por postularse</b>, por la entrevista ni por ningún paso del proceso. Si alguien te pide dinero en nuestro nombre, no nos representa.
-      </aside>
+
+      <div class="puesto-nota aparece">
+        <h2 class="subtitulo">Cómo postularte</h2>
+        <p>Enviá tu CV a <a href="mailto:reclutamiento@vygogroup.com?subject=Oficial%20de%20Expansi%C3%B3n%20Junior">reclutamiento@vygogroup.com</a> con el asunto <b>Oficial de Expansión Junior</b>. Si tu perfil encaja, te contactamos para una entrevista y ahí te contamos todo sobre el puesto.</p>
+        <button class="puesto-copiar" type="button" data-copiar="reclutamiento@vygogroup.com">Copiar el correo</button>
+        <p class="puesto-aviso"><b>Grupo VYGO no cobra por postularse</b>, por la entrevista ni por ningún paso del proceso. Si alguien te pide dinero en nuestro nombre, no nos representa.</p>
+      </div>
     </div>
   </section>
 </main>

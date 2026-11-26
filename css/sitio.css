@@ -515,7 +515,8 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 @media (max-width: 700px) { .cierre h2.cierre-frase { font-size: clamp(1.75rem, 8.2vw, 2.25rem); } }
 .cierre .bajada { margin-left: auto; margin-right: auto; text-wrap: balance; }
 .correo-caja { margin-top: 2.5rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-.correo { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.625rem, 3.2vw, 2.625rem); color: var(--lima); border-bottom: 2px solid rgba(161, 212, 0, .35); transition: border-color .2s ease; overflow-wrap: anywhere; }
+/* el correo va siempre en una sola línea: la letra se achica en pantallas angostas según su largo (--letras, 19 por defecto = vygogroup@gmail.com) */
+.correo { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: min(clamp(1.625rem, 3.2vw, 2.625rem), calc((100vw - var(--lado) - var(--lado-d)) / (var(--letras, 19) * .6))); white-space: nowrap; color: var(--lima); border-bottom: 2px solid rgba(161, 212, 0, .35); transition: border-color .2s ease; }
 .correo:hover { border-color: var(--lima); }
 .copiar { font: 700 0.875rem var(--f-texto); min-height: 2.75rem; padding: 0 1rem; border-radius: 62.4375rem; border: 1.5px solid var(--borde-fuerte); background: transparent; color: var(--tinta); cursor: pointer; }
 .copiar:hover { border-color: currentColor; }
@@ -569,62 +570,86 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .fila-linkedin .icono-li, .boton-linkedin .icono-li { color: #0A66C2; flex: none; }
 .fila-datos .estado { display: inline-flex; align-items: center; gap: 0.4375rem; font-weight: 700; }
 .fila-datos .estado-abierta { color: var(--verde-osc); background: #EEF7D4; }
-.estado-abierta i, .estado-ficha i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--lima); animation: latido-punto 1.8s ease-out infinite; }
+.estado-abierta i, .puesto-estado i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--lima); animation: latido-punto 1.8s ease-out infinite; }
 .fila-datos .estado-cerrada { color: var(--tenue); }
-.estado-ficha { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--verde-osc); }
 .fila-cerrada { grid-template-columns: minmax(0, 1fr) auto; }
 .fila-cerrada strong, .fila-cerrada .fila-nombre { color: var(--tenue); }
 .oculto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
-.detalle-in { display: grid; grid-template-columns: minmax(0, 30rem) minmax(0, 1fr); gap: clamp(2.5rem, 7vw, 6.875rem); align-items: start; }
-.detalle-foto { margin: 0; position: sticky; top: 6.875rem; }
-.detalle-foto img { width: 100%; height: auto; border-radius: 1.5rem; box-shadow: 0 1.875rem 4.375rem rgba(11, 21, 16, .14); }
-.detalle-texto { display: grid; gap: clamp(2.5rem, 4.4vw, 3.75rem); }
-.ficha { display: flex; flex-wrap: wrap; gap: 0.625rem; margin: 1.625rem 0 0; }
-.ficha div { padding: 0.75rem 1.125rem; border-radius: 1rem; background: #FFFFFF; }
-.ficha dt { font-size: 0.8125rem; font-weight: 700; color: var(--tenue); }
-.ficha dd { margin: 2px 0 0; font-weight: 700; font-size: 1.125rem; }
 .subtitulo { font-family: var(--f-texto); font-size: 0.9375rem; font-weight: 700; color: var(--tenue); margin-bottom: 0.875rem; }
-.requisitos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--tinta); }
-.requisitos li { display: flex; align-items: baseline; gap: 1.375rem; padding: 1.125rem 0; border-bottom: 1px solid var(--borde); font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.375rem, 2vw, 1.75rem); line-height: 1.2; }
-.requisitos span { font-family: var(--f-texto); font-size: 0.875rem; font-weight: 700; color: var(--tenue); letter-spacing: 0; font-variant-numeric: tabular-nums; }
-.aplicar p { color: var(--suave); max-width: 34em; }
-.aplicar p a { color: var(--verde-osc); font-weight: 700; }
-.aplicar p b { color: var(--tinta); }
-.aplicar-botones { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.625rem; }
-@media (min-width: 901px) and (max-width: 1279px) {
-  .aplicar-botones { display: grid; grid-template-columns: 1fr 1fr; }
-  .aplicar-botones .boton-solido { grid-column: 1 / -1; }
-}
-.aviso { padding: 1.25rem 1.375rem; border-radius: 1.125rem; background: #FFFFFF; color: var(--suave); font-size: 0.9688rem; }
-.aviso b { color: var(--tinta); }
 
-/* página de una vacante: miga de pan, título y ficha en la cabecera. Foto y texto a la par, y el aviso a todo el ancho */
+/* lista de vacantes en computadora: cada una es una tarjeta con la imagen del anuncio, el título con sus datos debajo y la flecha en un círculo.
+   En el teléfono se mantiene la fila simple (la imagen no se muestra) */
+.fila-foto { display: none; }
+@media (min-width: 901px) {
+  .fila-vacante { grid-template-columns: 7.5rem minmax(0, 1fr) auto auto; grid-template-rows: auto auto; column-gap: clamp(1.5rem, 2.6vw, 2.5rem); row-gap: 0.875rem; padding: 1.125rem clamp(1.25rem, 2.4vw, 2.25rem) 1.125rem 1.125rem; border: 0; border-radius: 1.75rem; background: var(--hueso); transition: background-color .3s ease, opacity .9s ease, transform .9s ease; }
+  .fila-vacante + .fila-vacante { margin-top: 1rem; }
+  .fila-vacante:hover { background: #EBEEE5; }
+  .fila-foto { display: block; grid-column: 1; grid-row: 1 / 3; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 1rem; }
+  .fila-vacante .fila-nombre, .fila-vacante strong { grid-column: 2; grid-row: 1; align-self: end; }
+  .fila-vacante .fila-datos { grid-column: 2; grid-row: 2; align-self: start; }
+  .fila-vacante .fila-datos span { background: #FFFFFF; }
+  .fila-vacante .fila-datos .estado-abierta { background: #EEF7D4; }
+  .fila-vacante .fila-linkedin { grid-column: 3; grid-row: 1 / 3; align-self: center; }
+  .fila-vacante .flecha { grid-column: 4; grid-row: 1 / 3; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--verde-osc); color: #FFFFFF; font-size: 1.375rem; }
+  .fila-enlace::after { border-radius: 1.75rem; }
+  .fila-cerrada { grid-template-columns: minmax(0, 1fr); padding-left: clamp(1.25rem, 2.4vw, 2.25rem); }
+  .fila-cerrada .fila-nombre, .fila-cerrada strong, .fila-cerrada .fila-datos { grid-column: 1; }
+}
+
+
+/* ── página de una vacante ──
+   Una sola plana blanca, como un afiche con su ficha al lado: el anuncio a la izquierda (queda fijo al bajar) y a la derecha
+   el título, los datos en una línea, las acciones, los requisitos y cómo postularse. Sin cajas, sin etiquetas y sin sombras.
+   En tableta y teléfono se apila en el orden del HTML: título y acciones, anuncio, requisitos y nota */
+.puesto { padding-top: calc(4.75rem + env(safe-area-inset-top, 0px) + clamp(2rem, 3.6vw, 3.25rem)); padding-bottom: clamp(3.5rem, 6vw, 5.5rem); }
+.puesto h1 { font-size: clamp(2.75rem, 5.4vw, 5rem); line-height: .98; }
+.puesto-datos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; row-gap: .375rem; margin: clamp(1rem, 1.5vw, 1.375rem) 0 0; padding: 0; font-size: 1.0625rem; font-weight: 500; line-height: 1.3; color: var(--suave); }
+.puesto-datos li + li { margin-left: .875rem; padding-left: .875rem; border-left: 1px solid var(--borde-fuerte); }
+.puesto-estado { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--verde-osc); }
+.puesto-acciones { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: clamp(1.5rem, 2.2vw, 2rem); }
+.boton-linkedin { gap: .5625rem; }
+.icono-li { width: 1.125em; height: 1.125em; }
+.puesto-foto { margin: 2.25rem 0 0; max-width: 30rem; }
+.puesto-foto img { display: block; width: 100%; height: auto; border-radius: 1.5rem; background: var(--hueso); }
+/* cada requisito va en un solo renglón: la letra no pasa del ancho de su columna dividido el largo del más extenso (--largo, en veces el tamaño de letra) */
+.puesto-requisitos { margin-top: clamp(2.25rem, 3.4vw, 3rem); container-type: inline-size; --largo: 18.9; }
+.requisitos { list-style: none; margin: 0; padding: clamp(.875rem, 1.3vw, 1.125rem) 0 0; border-top: 1px solid var(--tinta); display: grid; gap: clamp(.5rem, .8vw, .6875rem); }
+.requisitos li { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.3125rem, 1.75vw, 1.625rem); font-size: min(clamp(1.3125rem, 1.75vw, 1.625rem), calc(100cqi / var(--largo))); line-height: 1.2; }
+.puesto-nota { margin-top: clamp(2.25rem, 3.4vw, 3rem); padding-top: clamp(1.25rem, 1.8vw, 1.5rem); border-top: 1px solid var(--borde); }
+.puesto-nota p { max-width: 36em; color: var(--suave); }
+.puesto-nota p a { color: var(--verde-osc); font-weight: 700; }
+.puesto-nota p b { color: var(--tinta); }
+.puesto-copiar { margin-top: .75rem; padding: 0; border: 0; background: none; font: 700 1rem var(--f-texto); color: var(--verde-osc); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; cursor: pointer; }
+.puesto-copiar:hover { color: var(--tinta); }
+.puesto-nota .puesto-aviso { margin-top: 1.375rem; font-size: .9688rem; }
+@media (min-width: 901px) {
+  /* el anuncio mide lo que deja el alto de la pantalla, para que se vea entero sin bajar */
+  .puesto-in { display: grid; grid-template-columns: clamp(20rem, min(40vw, calc((100vh - 10rem) * .8)), 36rem) minmax(0, 1fr); grid-template-areas: "foto cabeza" "foto requisitos" "foto nota"; column-gap: clamp(3rem, 6vw, 6.5rem); align-items: start; }
+  .puesto-cabeza { grid-area: cabeza; }
+  .puesto-requisitos { grid-area: requisitos; }
+  .puesto-nota { grid-area: nota; }
+  .puesto-foto { grid-area: foto; position: sticky; top: calc(4.75rem + 1.5rem); margin: 0; max-width: none; }
+  .puesto h1 { font-size: clamp(2.75rem, 4.6vw, 4.5rem); }
+}
+@media (min-width: 641px) and (max-width: 900px) {
+  /* tableta: título arriba a todo el ancho, y debajo el anuncio con los requisitos al lado */
+  .puesto-in { display: grid; grid-template-columns: minmax(0, .65fr) minmax(0, 1fr); grid-template-areas: "cabeza cabeza" "foto requisitos" "nota nota"; column-gap: clamp(1.75rem, 5vw, 2.75rem); align-items: start; }
+  .puesto-cabeza { grid-area: cabeza; }
+  .puesto-foto { grid-area: foto; max-width: none; }
+  .puesto-requisitos { grid-area: requisitos; margin-top: 2.25rem; }
+  .puesto-nota { grid-area: nota; }
+}
+@media (max-width: 640px) {
+  /* el estado va en su propio renglón y los demás datos debajo */
+  .puesto-estado { flex-basis: 100%; }
+  .puesto-datos li:nth-child(2) { margin-left: 0; padding-left: 0; border-left: 0; }
+}
+
+/* miga de pan (vacante y fundadores) */
 .miga { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.625rem; margin-bottom: clamp(1rem, 1.6vw, 1.5rem); font-size: 0.9375rem; font-weight: 500; color: var(--tenue); }
 .miga a { color: var(--verde-osc); font-weight: 700; border-bottom: 1.5px solid transparent; transition: border-color .2s ease; }
 .miga a:hover { border-bottom-color: currentColor; }
-.cabecera .ficha div { background: var(--hueso); }
-.cabecera .ficha dd { white-space: nowrap; }
-.detalle-vacante { grid-template-columns: minmax(0, min(32rem, 46%)) minmax(0, 1fr); row-gap: clamp(2.5rem, 4.4vw, 3.75rem); }
-/* el aviso va en la columna del texto, así la foto fija no lo tapa al bajar */
-@media (min-width: 901px) { .detalle-vacante .aviso { grid-column: 2; } }
-@media (min-width: 1100px) {
-  .cabecera-fila .ficha { margin: 0; padding-bottom: .5rem; justify-self: end; justify-content: flex-end; }
-  /* vacante con título largo: la ficha queda en una sola fila y es el título el que pasa a dos renglones */
-  .cabecera-vacante .marco { grid-template-columns: minmax(0, 1fr) auto; }
-  .cabecera-vacante .ficha { flex-wrap: nowrap; }
-}
-@media (min-width: 1100px) and (max-width: 1279px) {
-  .cabecera-vacante .marco { grid-template-columns: minmax(0, 1fr); }
-  .cabecera-vacante .ficha { margin-top: 1.625rem; padding-bottom: 0; justify-self: start; justify-content: flex-start; }
-}
-@media (max-width: 640px) {
-  /* en el teléfono la ficha es una lista de renglones, como los requisitos */
-  .cabecera .ficha { display: grid; gap: 0; border-top: 1px solid var(--tinta); }
-  .cabecera .ficha div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.875rem 0; border-radius: 0; background: none; border-bottom: 1px solid var(--borde); }
-  .cabecera .ficha dt { font-size: 0.9375rem; }
-  .cabecera .ficha dd { margin: 0; }
-}
 
 /* página 404: el pie queda siempre abajo, aunque la pantalla sea más alta que la página */
 .pagina-404 { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
@@ -633,6 +658,8 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 
 .cierre-corto { padding: clamp(5.625rem, 10vw, 9.375rem) 0; }
 .cierre-corto h2 { font-size: clamp(2.75rem, 6vw, 6rem); }
+/* «¿No ves tu puesto?» siempre en una sola línea: la frase mide unas 9,25 veces el tamaño de letra, así que la letra no pasa del ancho del cierre dividido 9,6 */
+.cierre h2.cierre-una-linea { white-space: nowrap; font-size: min(clamp(2.75rem, 6vw, 6rem), calc((min(100vw, 51.25rem) - var(--lado) - var(--lado-d)) / 9.6)); }
 
 .legal > * { max-width: 44.5rem; }
 .legal p { color: var(--suave); margin-top: 0.875rem; }
@@ -749,7 +776,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   .formulario-ancho { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
-  .carta-in, .dos-col, .cabecera-form, .detalle-in, .acordeon-doble { grid-template-columns: 1fr; }
+  .carta-in, .dos-col, .cabecera-form, .acordeon-doble { grid-template-columns: 1fr; }
   .hojas { grid-template-columns: 1fr; }
   .vygo-in { grid-template-columns: 1fr; }
   .hoja-a, .hoja-b { --giro: 0deg; }
@@ -764,7 +791,6 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   .signo { display: none; }
   .acordeon details p { padding-right: 0; }
   .acordeon-doble .acordeon + .acordeon details:first-child { border-top: 0; }
-  .detalle-foto { position: static; max-width: 30rem; }
   .fila-vacante { grid-template-columns: minmax(0, 1fr) auto; gap: 0.875rem; }
   .fila-vacante .fila-datos { grid-column: 1; grid-row: 2; }
   .fila-vacante .flecha { grid-column: 2; grid-row: 1 / 3; }
@@ -784,7 +810,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   .vacante-foto { height: auto; aspect-ratio: 1; object-position: 50% 50%; }
   .pie-col { gap: 0; }
   .pie-col a { padding-block: 0.625rem; }
-  .aplicar-botones .boton { flex: 1 1 100%; }
+  .puesto-acciones .boton { flex: 1 1 100%; }
   .pie-legal { flex-direction: column; }
 }
 
@@ -829,7 +855,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   html { scroll-behavior: auto; }
   .aparece, .carta.aparece, :is(h1, h2).aparece { opacity: 1; transform: none; clip-path: none; transition: none; }
   :is(h1, h2).aparece > .sube { transform: none; transition: none; }
-  .cinta-pista, .vacante-abierta i, .estado-abierta i, .estado-ficha i, .vacante-sello svg, .acordeon-doble.visto details, .cuenta-n i.cambia { animation: none; }
+  .cinta-pista, .vacante-abierta i, .estado-abierta i, .puesto-estado i, .vacante-sello svg, .acordeon-doble.visto details, .cuenta-n i.cambia { animation: none; }
   .cifras.brilla .cifra-valor { animation: none; background-position: 0 0; }
   .trazo path { stroke-dashoffset: 0; transition: none; }
   .carta mark, .hoja mark { background-size: 100% 100%; transition: none; }
