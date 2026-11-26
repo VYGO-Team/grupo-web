@@ -139,7 +139,7 @@ body:not(.cargando) .carga { opacity: 0; visibility: hidden; pointer-events: non
   .nav-grupo { display: block; border-bottom: 1px solid var(--borde); }
   .nav-grupo .nav-padre { display: block; border-bottom: 0; padding-bottom: .5rem; }
   .nav-flechita { display: none; }
-  .nav-sub { position: static; min-width: 0; margin: 0; padding: 0 0 .875rem; background: none; box-shadow: none; border-radius: 0; opacity: 1; visibility: visible; transform: none; transition: none; }
+  .nav-sub { position: static; min-width: 0; margin: 0; padding: 0 0 .875rem; background: none; box-shadow: none; border-radius: 0; opacity: 1; visibility: inherit; transform: none; transition: none; }
   .nav-sub::before { display: none; }
   .nav-sub a { padding: .4375rem 0 .4375rem 1rem; border-bottom: 0; font-family: var(--f-texto); font-size: 1.125rem; font-weight: 500; letter-spacing: 0; color: var(--suave); border-radius: 0; }
   .nav-sub a:hover, .nav-sub a[aria-current="page"] { background: none; }
@@ -499,6 +499,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .acordeon-doble.visto details { animation: sube .7s cubic-bezier(.2, .8, .2, 1) both; }
 .acordeon-doble.visto details:nth-child(2) { animation-delay: .08s; }
 .acordeon-doble.visto details:nth-child(3) { animation-delay: .16s; }
+@keyframes latido-punto { 0% { box-shadow: 0 0 0 0 rgba(161, 212, 0, .55); } 100% { box-shadow: 0 0 0 0.5rem rgba(161, 212, 0, 0); } }
 @keyframes sube { from { opacity: 0; transform: translateY(1.375rem); } }
 .acordeon a { color: var(--verde-osc); text-decoration: underline; text-underline-offset: 3px; }
 
@@ -551,11 +552,29 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 1.75rem; padding: 1.875rem 0; border-top: 1px solid var(--tinta); border-bottom: 1px solid var(--borde);
   transition: opacity .9s ease, transform .9s ease;
 }
-.fila-vacante strong { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.05; }
+.fila-vacante strong, .fila-nombre { margin: 0; font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.05; }
 .fila-datos { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .fila-datos span { padding: 0.375rem 0.8125rem; border-radius: 62.4375rem; background: var(--hueso); font-size: 0.9062rem; font-weight: 500; }
 .fila-vacante .flecha { font-size: 1.625rem; color: var(--verde-osc); transition: transform .25s ease; }
 .fila-vacante:hover .flecha { transform: translateX(0.375rem); }
+.fila-vacante .flecha { pointer-events: none; }
+.fila-vacante:has(.fila-linkedin:hover) .flecha { transform: none; }
+/* la fila entera lleva a la vacante (enlace estirado); el enlace de LinkedIn queda por encima */
+.fila-vacante { position: relative; grid-template-columns: minmax(0, 1fr) auto auto auto; }
+.fila-enlace::after { content: ""; position: absolute; inset: 0; }
+.fila-enlace:focus-visible { outline: none; }
+.fila-enlace:focus-visible::after { outline: 2px solid var(--verde-osc); outline-offset: 4px; border-radius: 4px; }
+.fila-linkedin { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.9375rem; border: 1px solid var(--borde-fuerte); border-radius: 62.4375rem; font-size: 0.9062rem; font-weight: 700; color: var(--tinta); background: #FFFFFF; transition: border-color .2s ease, background-color .2s ease; }
+.fila-linkedin:hover { border-color: var(--tinta); }
+.fila-linkedin .icono-li, .boton-linkedin .icono-li { color: #0A66C2; flex: none; }
+.fila-datos .estado { display: inline-flex; align-items: center; gap: 0.4375rem; font-weight: 700; }
+.fila-datos .estado-abierta { color: var(--verde-osc); background: #EEF7D4; }
+.estado-abierta i, .estado-ficha i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--lima); animation: latido-punto 1.8s ease-out infinite; }
+.fila-datos .estado-cerrada { color: var(--tenue); }
+.estado-ficha { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--verde-osc); }
+.fila-cerrada { grid-template-columns: minmax(0, 1fr) auto; }
+.fila-cerrada strong, .fila-cerrada .fila-nombre { color: var(--tenue); }
+.oculto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .detalle-in { display: grid; grid-template-columns: minmax(0, 30rem) minmax(0, 1fr); gap: clamp(2.5rem, 7vw, 6.875rem); align-items: start; }
 .detalle-foto { margin: 0; position: sticky; top: 6.875rem; }
@@ -573,6 +592,10 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .aplicar p a { color: var(--verde-osc); font-weight: 700; }
 .aplicar p b { color: var(--tinta); }
 .aplicar-botones { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.625rem; }
+@media (min-width: 901px) and (max-width: 1279px) {
+  .aplicar-botones { display: grid; grid-template-columns: 1fr 1fr; }
+  .aplicar-botones .boton-solido { grid-column: 1 / -1; }
+}
 .aviso { padding: 1.25rem 1.375rem; border-radius: 1.125rem; background: #FFFFFF; color: var(--suave); font-size: 0.9688rem; }
 .aviso b { color: var(--tinta); }
 
@@ -587,6 +610,13 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 @media (min-width: 901px) { .detalle-vacante .aviso { grid-column: 2; } }
 @media (min-width: 1100px) {
   .cabecera-fila .ficha { margin: 0; padding-bottom: .5rem; justify-self: end; justify-content: flex-end; }
+  /* vacante con título largo: la ficha queda en una sola fila y es el título el que pasa a dos renglones */
+  .cabecera-vacante .marco { grid-template-columns: minmax(0, 1fr) auto; }
+  .cabecera-vacante .ficha { flex-wrap: nowrap; }
+}
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .cabecera-vacante .marco { grid-template-columns: minmax(0, 1fr); }
+  .cabecera-vacante .ficha { margin-top: 1.625rem; padding-bottom: 0; justify-self: start; justify-content: flex-start; }
 }
 @media (max-width: 640px) {
   /* en el teléfono la ficha es una lista de renglones, como los requisitos */
@@ -624,11 +654,12 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .socio { position: relative; display: flex; flex-direction: column; min-width: 0; }
 .socio:nth-child(2) { transition-delay: .08s; }
 .socio:nth-child(3) { transition-delay: .16s; }
-.socio-foto { position: relative; overflow: hidden; width: 100%; flex: 1 1 12rem; min-height: 12rem; max-height: 34rem; border-radius: 1.75rem; display: grid; place-items: center; background: var(--hueso); transition: background-color .45s ease; }
+.socio-foto { position: relative; overflow: hidden; width: 100%; flex: 1 1 12rem; min-height: max(12rem, calc(var(--col-socio) / 1.5)); max-height: 34rem; border-radius: 1.75rem; display: grid; place-items: center; background: var(--hueso); transition: background-color .45s ease; }
 .socio-foto span { font-family: var(--f-titulo); font-weight: var(--peso-fuerte); font-size: clamp(3.5rem, 6.4vw, 6.75rem); letter-spacing: -.02em; line-height: 1; color: var(--verde-osc); transition: transform .6s cubic-bezier(.2, .8, .2, 1), color .45s ease; }
-/* retratos: a color y sin filtros. Los tres archivos son cuadrados y tienen los ojos a la misma altura y al mismo tamaño,
-   así cualquier recorte del recuadro deja las tres caras iguales. object-position cuida que no se corte el pelo en recuadros anchos */
-.socio-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; transition: transform .8s cubic-bezier(.2, .8, .2, 1); }
+/* retratos: a color y sin filtros. Los tres archivos son apaisados (3:2), con la cabeza a la misma altura y al mismo tamaño.
+   Como el recuadro nunca es más ancho que 3:2 (ver min-height abajo), la foto siempre se ajusta por el alto: la cara ocupa
+   la misma parte del recuadro en cualquier pantalla y solo cambia cuánto fondo se ve a los lados */
+.socio-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transition: transform .8s cubic-bezier(.2, .8, .2, 1); }
 /* nombre y apellido en una sola línea: la letra se ajusta al ancho de la columna (--col-socio) para que entre «Kamilo Hernández», el más largo (8,8 veces el tamaño de letra), y los tres quedan del mismo tamaño */
 .socio h2 { margin-top: clamp(1rem, min(1.6vw, 2.6vh), 1.5rem); font-size: min(clamp(2rem, min(3.6vw, 7vh), 3.5rem), var(--col-socio) / 9.1); line-height: .95; font-weight: var(--peso-fuerte); white-space: nowrap; }
 .socio-nombre, .socio-apellido { display: inline; }
@@ -646,6 +677,12 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
     .socios-grid { grid-template-rows: minmax(12rem, 1fr) auto auto; row-gap: 0; }
     .socio { display: grid; grid-row: span 3; grid-template-rows: subgrid; }
   }
+}
+/* computadora: retrato vertical 4:5 como en el teléfono (js/sitio.js calcula --ancho-foto).
+   Las tres columnas toman el ancho de la foto y van juntas, con el hueco normal, centradas */
+@media (min-width: 901px) {
+  .socios-grid.retrato-vertical { grid-template-columns: repeat(3, var(--ancho-foto)); grid-template-rows: auto auto auto; justify-content: center; align-content: start; --col-socio: var(--ancho-foto); }
+  .socios-grid.retrato-vertical .socio-foto { flex: none; aspect-ratio: 4 / 5; height: auto; min-height: 0; max-height: none; align-self: start; }
 }
 /* tableta y teléfono: los tres siguen en una sola fila, con retratos verticales y letra a la medida de la columna */
 @media (max-width: 900px) {
@@ -689,7 +726,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   .nav-grupo { display: block; border-bottom: 1px solid var(--borde); }
   .nav-links .nav-grupo .nav-padre { display: block; border-bottom: 0; padding-bottom: .5rem; }
   .nav-flechita { display: none; }
-  .nav-sub { position: static; min-width: 0; margin: 0; padding: 0 0 .875rem; background: none; box-shadow: none; border-radius: 0; opacity: 1; visibility: visible; transform: none; transition: none; display: grid; gap: 0; }
+  .nav-sub { position: static; min-width: 0; margin: 0; padding: 0 0 .875rem; background: none; box-shadow: none; border-radius: 0; opacity: 1; visibility: inherit; transform: none; transition: none; display: grid; gap: 0; }
   .nav-sub::before { display: none; }
   .nav-links .nav-sub a { padding: .4375rem 0 .4375rem 1rem; border-bottom: 0; border-radius: 0; font-family: var(--f-texto); font-size: 1.125rem; font-weight: 500; letter-spacing: 0; word-spacing: 0; line-height: 1.4; color: var(--suave); }
   .nav-links .nav-sub a:hover, .nav-links .nav-sub a[aria-current="page"] { background: none; color: var(--verde-osc); }
@@ -701,7 +738,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Clash Display trae el espacio entre palabras muy estrecho: se abre un poco para que no se peguen */
-:is(h1, h2, h3, .cinta span, .empleo-fondo span, .carta-resalto, .acordeon summary, .vacante strong, .fila-vacante strong, .requisitos li) { word-spacing: .08em; }
+:is(h1, h2, h3, .cinta span, .empleo-fondo span, .carta-resalto, .acordeon summary, .vacante strong, .fila-vacante strong, .fila-nombre, .requisitos li) { word-spacing: .08em; }
 
 /* ── teléfono y tableta ────────────────────────────── */
 @media (max-width: 1100px) { .frentes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -731,11 +768,15 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   .fila-vacante { grid-template-columns: minmax(0, 1fr) auto; gap: 0.875rem; }
   .fila-vacante .fila-datos { grid-column: 1; grid-row: 2; }
   .fila-vacante .flecha { grid-column: 2; grid-row: 1 / 3; }
+  .fila-vacante .fila-linkedin { grid-column: 1; grid-row: 3; justify-self: start; }
   .vacante-sello { right: 0.875rem; top: -2.875rem; width: 6.5rem; height: 6.5rem; }
   .vacante-sello img { width: 2.125rem; height: 2.125rem; }
 }
 @media (max-width: 640px) {
   body { font-size: 1.0625rem; }
+  .fila-vacante .flecha { grid-row: 1; }
+  .fila-vacante .fila-datos { grid-column: 1 / -1; }
+  .miga span { display: none; }
   .formulario-ancho { grid-template-columns: 1fr; }
   .formulario-pie .boton { width: 100%; }
   .vacante { grid-template-columns: 1fr; }
@@ -788,7 +829,7 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
   html { scroll-behavior: auto; }
   .aparece, .carta.aparece, :is(h1, h2).aparece { opacity: 1; transform: none; clip-path: none; transition: none; }
   :is(h1, h2).aparece > .sube { transform: none; transition: none; }
-  .cinta-pista, .vacante-abierta i, .vacante-sello svg, .acordeon-doble.visto details, .cuenta-n i.cambia { animation: none; }
+  .cinta-pista, .vacante-abierta i, .estado-abierta i, .estado-ficha i, .vacante-sello svg, .acordeon-doble.visto details, .cuenta-n i.cambia { animation: none; }
   .cifras.brilla .cifra-valor { animation: none; background-position: 0 0; }
   .trazo path { stroke-dashoffset: 0; transition: none; }
   .carta mark, .hoja mark { background-size: 100% 100%; transition: none; }

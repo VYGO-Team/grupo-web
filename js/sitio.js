@@ -413,6 +413,30 @@
     }
   })();
 
+  // ── fundadores: en computadora el retrato es vertical (4:5), como en el teléfono ──────────────
+  // Se mide el alto que la foto tendría para que todo entre en una pantalla y se usa un 15 % más (pedido de Kamilo:
+  // «un poco más grandes»), sin pasar del ancho de la columna. Los tres van juntos, con el hueco normal, y centrados.
+  (function () {
+    var g = document.querySelector('.socios-grid');
+    if (!g) return;
+    function ajusta() {
+      g.classList.remove('retrato-vertical');
+      g.style.removeProperty('--ancho-foto');
+      if (window.innerWidth <= 900) return;
+      var f = g.querySelector('.socio-foto');
+      var cs = getComputedStyle(g);
+      var hueco = parseFloat(cs.columnGap) || 0;
+      var col = (g.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2 * hueco) / 3;
+      var ancho = Math.min(col, f.getBoundingClientRect().height * 0.8 * 1.15);
+      g.style.setProperty('--ancho-foto', ancho.toFixed(1) + 'px');
+      g.classList.add('retrato-vertical');
+    }
+    var espera;
+    ajusta();
+    window.addEventListener('resize', function () { clearTimeout(espera); espera = setTimeout(ajusta, 80); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajusta);
+  })();
+
   // ── año del pie ───────────────────────────────────────────────────────
   var anio = document.getElementById('anio');
   if (anio) anio.textContent = String(Math.max(2026, new Date().getFullYear()));

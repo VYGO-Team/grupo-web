@@ -30,16 +30,17 @@ Cada página vive en su propia carpeta, con un `index.html` adentro, así la dir
 | --- | --- | --- |
 | `/` | `index.html` | Inicio. Portada, carta, áreas con video, misión y visión, lanzamiento de VYGO, formulario, empleo, preguntas y contacto |
 | `/empleo/` | `empleo/index.html` | Trabajá con nosotros, con la lista de vacantes |
-| `/empleo/promotor-de-detalle/` | `empleo/promotor-de-detalle/index.html` | Página de la vacante, con sus datos estructurados (JobPosting) |
+| `/empleo/oficial-de-expansion-junior/` | `empleo/oficial-de-expansion-junior/index.html` | Página de la vacante, con sus datos estructurados (JobPosting) |
+| `/empleo/promotor-de-detalle/` | `empleo/promotor-de-detalle/index.html` | Vacante anterior. Redirige a la vacante actual. No se indexa |
 | `/propuestas/` | `propuestas/index.html` | Página de propuestas, con su formulario |
 | `/fundadores/` | `fundadores/index.html` | Fundadores |
 | `/privacidad/` | `privacidad/index.html` | Aviso de privacidad y aviso legal (`#aviso-legal`). No se indexa |
 
-Las direcciones anteriores (`empleo.html`, `comercios.html`, `fundadores.html` y `privacidad.html`) siguen en la raíz como páginas mínimas que redirigen a la nueva y conservan el ancla. `empleo.html#promotor-de-detalle` lleva a `/empleo/promotor-de-detalle/`. No hay que borrarlas mientras existan enlaces viejos circulando.
+Las direcciones anteriores (`empleo.html`, `comercios.html`, `fundadores.html` y `privacidad.html`) siguen en la raíz como páginas mínimas que redirigen a la nueva y conservan el ancla. `empleo.html#promotor-de-detalle` lleva a `/empleo/oficial-de-expansion-junior/`. No hay que borrarlas mientras existan enlaces viejos circulando.
 
 Todas las rutas internas son absolutas desde la raíz (`/css/sitio.css`, `/img/…`, `/empleo/`). Por eso el sitio tiene que servirse en la raíz de un dominio o de un servidor local, y no funciona abriendo los archivos con doble clic. La única excepción son las `url(../…)` dentro de los CSS, que son relativas al propio archivo.
 
-Para agregar una vacante, copiá la carpeta `empleo/promotor-de-detalle/` con otro nombre, cambiá sus textos, su `canonical`, su `og:url` y el JobPosting, sumá una fila en `empleo/index.html` y la dirección nueva en `sitemap.xml`.
+Para agregar una vacante, copiá la carpeta `empleo/oficial-de-expansion-junior/` con otro nombre, cambiá sus textos, su `canonical`, su `og:url` y el JobPosting, sumá una fila en `empleo/index.html` (un `article.fila-vacante` con su `h2.fila-nombre`, el estado `estado-abierta` «Disponible» y el enlace de LinkedIn) y la dirección nueva en `sitemap.xml`. Cuando una vacante se cierra, su fila lleva la clase `fila-cerrada`, el estado `estado-cerrada` «Cerrada», sin enlace a la página ni a LinkedIn.
 
 ## Qué hay en cada lugar
 
