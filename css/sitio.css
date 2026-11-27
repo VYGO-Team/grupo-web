@@ -613,10 +613,12 @@ select.hueco { appearance: none; -webkit-appearance: none; cursor: pointer; padd
 .icono-li { width: 1.125em; height: 1.125em; }
 .puesto-foto { margin: 2.25rem 0 0; max-width: 30rem; }
 .puesto-foto img { display: block; width: 100%; height: auto; border-radius: 1.5rem; background: var(--hueso); }
-/* cada requisito va en un solo renglón: la letra no pasa del ancho de su columna dividido el largo del más extenso (--largo, en veces el tamaño de letra) */
-.puesto-requisitos { margin-top: clamp(2.25rem, 3.4vw, 3rem); container-type: inline-size; --largo: 18.9; }
+/* cada requisito va en un solo renglón: la letra no pasa del ancho de su columna dividido el largo del más extenso (--largo, en veces el tamaño de letra; incluye el check) */
+.puesto-requisitos { margin-top: clamp(2.25rem, 3.4vw, 3rem); container-type: inline-size; --largo: 20.4; }
 .requisitos { list-style: none; margin: 0; padding: clamp(.875rem, 1.3vw, 1.125rem) 0 0; border-top: 1px solid var(--tinta); display: grid; gap: clamp(.5rem, .8vw, .6875rem); }
-.requisitos li { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.3125rem, 1.75vw, 1.625rem); font-size: min(clamp(1.3125rem, 1.75vw, 1.625rem), calc(100cqi / var(--largo))); line-height: 1.2; }
+.requisitos li { font-family: var(--f-titulo); font-weight: var(--peso-titulo); letter-spacing: var(--aire-titulo); font-size: clamp(1.3125rem, 1.75vw, 1.625rem); font-size: min(clamp(1.3125rem, 1.75vw, 1.625rem), calc(100cqi / var(--largo))); line-height: 1.2; display: flex; align-items: center; gap: .5em; }
+/* check de cada requisito: círculo lima con la palomita en verde oscuro, del tamaño de la letra */
+.requisitos li::before { content: ''; flex: none; width: .92em; height: .92em; border-radius: 50%; background: var(--lima) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 12.4l3.6 3.6 7.2-7.8' fill='none' stroke='%23004822' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 74% no-repeat; }
 .puesto-nota { margin-top: clamp(2.25rem, 3.4vw, 3rem); padding-top: clamp(1.25rem, 1.8vw, 1.5rem); border-top: 1px solid var(--borde); }
 .puesto-nota p { max-width: 36em; color: var(--suave); }
 .puesto-nota p a { color: var(--verde-osc); font-weight: 700; }

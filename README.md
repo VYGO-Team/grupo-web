@@ -31,6 +31,7 @@ Cada página vive en su propia carpeta, con un `index.html` adentro, así la dir
 | `/` | `index.html` | Inicio. Portada, carta, áreas con video, misión y visión, lanzamiento de VYGO, formulario, empleo, preguntas y contacto |
 | `/empleo/` | `empleo/index.html` | Trabajá con nosotros, con la lista de vacantes |
 | `/empleo/oficial-de-expansion-junior/` | `empleo/oficial-de-expansion-junior/index.html` | Página de la vacante, con sus datos estructurados (JobPosting) |
+| `/empleo/desarrollador-backend/` | `empleo/desarrollador-backend/index.html` | Página de la vacante Desarrollador Backend, con sus datos estructurados (JobPosting) |
 | `/empleo/promotor-de-detalle/` | `empleo/promotor-de-detalle/index.html` | Vacante anterior. Redirige a la vacante actual. No se indexa |
 | `/propuestas/` | `propuestas/index.html` | Página de propuestas, con su formulario |
 | `/fundadores/` | `fundadores/index.html` | Fundadores |
